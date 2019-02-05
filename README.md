@@ -30,13 +30,13 @@ Knowledge graphs are a means of storing and using data, which allows people and 
 
 ## Timeline
 
-2.17 Build sentence(paragraph)-level knowledge graph prototypes
+* Build sentence(paragraph)-level knowledge graph prototypes (by Feb. 17)
 
-3.3  Create initial visualization
+* Create initial visualization (by Mar. 3)
 
-3.30 Finish multi-document knowledge graphs
+* Finish multi-document knowledge graphs (by Mar. 30)
 
-4.21 Complete initial Neural Networks
+* Complete initial Neural Networks (by Apr. 21)
 
-5.18 Complete final visualization and competitive deep learning models
+* Complete final visualization and competitive deep learning models (by May 18)
 
