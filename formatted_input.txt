@@ -1,0 +1,7 @@
+{"sentence": "CDS is a student organization" }
+{"sentence": "We offer a variety of projects to work on" }
+{"sentence": "We practice what we teach - real techniques with real data" }
+{"sentence": "We connect industry and passionate students together" }
+{"sentence": "Our applied arm tackles challenges like the application of deep learning to DNA analysis" }
+{"sentence": "Our exploratory arm learns and implements cutting-edge advancements in fields like reinforcement learning" }
+{"sentence": "Our interest is in building a community that enables students to pursue their enthusiasm for data science" }
