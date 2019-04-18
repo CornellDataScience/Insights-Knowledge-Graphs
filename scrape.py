@@ -14,7 +14,7 @@ def read_page(url):
         for t in text:
              if not t.find('img') and (t.name == 'p' or t.name == 'ul'):
                 full_text += str(t.getText().replace('\n', ''))
-        myFile.write(title)
+        #myFile.write(title)
         myFile.write(full_text + "\n")
     except AttributeError:
         print("invalid page, skipping")
