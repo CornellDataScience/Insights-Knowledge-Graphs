@@ -1,69 +1,69 @@
-the son of former NBA player Joe Bryant	0
-after the 2015–16 season	1
-at age 34	2
-the youngest player in league history	3
-for the most in NBA history	4
-the second most points	5
-an 18-time All - Star, 15-time member of the All - NBA Team, and 12-time member of the All - Defensive team	6
-the	7
-the Finals MVP Award	8
-He	9
-he	10
-a successful high school basketball career at Lower Merion High School in Pennsylvania	11
-and he	12
-eventually	13
-Bryant and Shaquille O'Neal	14
-by the Charlotte Hornets	15
-O'Neal	16
-that he	17
-the all - time	18
-in the 1996 NBA draft	19
-season	20
-the Academy Award	21
-where he	22
-an American former professional basketball player	23
-His four All - Star MVP Awards	24
-as the top high school basketball player in the country	25
-the 1997 Slam Dunk Contest	26
-After	27
-in the 2008 NBA Finals	28
-the NBA	29
-his play	30
-gold medals	31
-for the NBA draft	32
-August 23, 1978	33
-himself	34
-a torn Achilles tendon	35
-to the Miami Heat and Bryant	36
-out of court	37
-the following two years by season - ending injuries to his knee and shoulder	38
-that he would retire after the 2015–16 season	39
-Jerry West	40
-to start that game for a record 18 consecutive appearances until his retirement	41
-his entire 20-year career with the Los Angeles Lakers of the National Basketball Association	42
-third on the league 's all - time regular season scoring and fourth on the all - time postseason scoring list	43
-him	44
-Kobe Bean Bryant	45
-The Hornets	46
-the charges	47
-the regular season 's Most Valuable Player Award	48
-to start the All - Star Game	49
+Jerry_West	0
+among_the_top_players_in_the_league	1
+the_Finals_MVP_Award	2
+third_on_the_league_'s_all_-_time_regular_season_scoring_and_fourth_on_the_all_-_time_postseason_scoring_list	3
+the	4
+by_the_Charlotte_Hornets	5
+the_regular_season_'s_Most_Valuable_Player_Award	6
+a_torn_Achilles	7
+the_charges	8
+to_start_the_All_-_Star_Game	9
+He	10
+a_torn_Achilles_tendon	11
+he	12
+gold_medals	13
+the_1997_Slam_Dunk_Contest	14
+in_the_2008_NBA_Finals	15
+eventually	16
+his_play	17
+O'Neal	18
+the_Academy_Award	19
+scorer	20
+an_American_former_professional_basketball_player	21
+five_NBA_championships	22
+his_entire_20-year_career_with_the_Los_Angeles_Lakers_of_the_National_Basketball_Association	23
+the_son_of_former_NBA_player_Joe_Bryant	24
+season	25
+that_he_would_retire_after_the_2015–16_season	26
+The_Hornets	27
+After	28
+for_the_NBA_draft	29
+the_cornerstone_of_the_Lakers	30
+the_all_-_time_leading_scorer_in_Lakers_franchise_history_on_February_1,_2010	31
+for_the_most_in_NBA_history	32
+himself	33
+an_18-time_All_-_Star,_15-time_member_of_the_All_-_NBA_Team,_and_12-time_member_of_the_All_-_Defensive_team	34
+at_age_34	35
+the_following_two_years_by_season_-_ending_injuries_to_his_knee_and_shoulder	36
+the_2004_NBA_Finals	37
+him	38
+the_13th_overall	39
+the_Lakers	40
+in_the_1996_NBA_draft	41
+to_the_Miami_Heat_and_Bryant	42
+injuries_to_his_knee_and_shoulder	43
+30,000_career_points	44
+the_all_-_time	45
+a_successful_high_school_basketball_career_at_Lower_Merion_High_School_in_Pennsylvania	46
+Bryant_and_Shaquille_O'Neal	47
+that_he	48
+and_he	49
 and	50
-the first guard in NBA history	51
-a civil suit	52
-the 13th overall	53
-that game	54
-the all - time leading scorer in Lakers franchise history on February 1, 2010	55
-in a single game in league history behind Wilt Chamberlain 's 100-point game	56
-a torn Achilles	57
-at least 20 seasons	58
-the Lakers	59
-among the top players in the league	60
-30,000 career points	61
-Bryant	62
-an All - Star	63
-the 2004 NBA Finals	64
-injuries to his knee and shoulder	65
-the cornerstone of the Lakers	66
-five NBA championships	67
-scorer	68
+after_the_2015–16_season	51
+at_least_20_seasons	52
+an_All_-_Star	53
+where_he	54
+a_civil_suit	55
+to_start_that_game_for_a_record_18_consecutive_appearances_until_his_retirement	56
+in_a_single_game_in_league_history_behind_Wilt_Chamberlain_'s_100-point_game	57
+Kobe_Bean_Bryant	58
+the_youngest_player_in_league_history	59
+the_second_most_points	60
+out_of_court	61
+His_four_All_-_Star_MVP_Awards	62
+Bryant	63
+as_the_top_high_school_basketball_player_in_the_country	64
+August_23,_1978	65
+that_game	66
+the_NBA	67
+the_first_guard_in_NBA_history	68

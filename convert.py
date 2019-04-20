@@ -43,8 +43,8 @@ if __name__ == '__main__':
                         verb_end = desc.find(']', verb_start)
                         verb = desc[verb_start + 4 : verb_end]
 
-                        relations_arg0 = desc[desc.find('[ARG0: ') + 7 : desc.find(']', desc.find('[ARG0: '))].replace(r' ,', r',').replace(' ', '_')
-                        relations_arg1 = desc[desc.find('[ARG1: ') + 7 : desc.find(']', desc.find('[ARG1: '))].replace(r' ,', r',').replace(' ', '_')
+                        relations_arg0 = desc[desc.find('[ARG0: ') + 7 : desc.find(']', desc.find('[ARG0: '))].replace(r' ,', r',')
+                        relations_arg1 = desc[desc.find('[ARG1: ') + 7 : desc.find(']', desc.find('[ARG1: '))].replace(r' ,', r',')
 
                         details_arg0 = desc[:verb_start]
                         details_arg1 = desc[verb_end + 1:]
@@ -59,16 +59,15 @@ if __name__ == '__main__':
                             j = details_arg1.find(']', i)
                             details_arg1 = details_arg1[:i] + details_arg1[i+7:j] + details_arg1[j+1:]
 
-                        details_arg0 = details_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';').replace(' ', '_')
-                        details_arg1 = details_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';').replace(' ', '_')
+                        details_arg0 = details_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+                        details_arg1 = details_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
                             
                         # TODO: remove tuples with bad entities using POS tagger
                         pos_verb = tag(tokenize(verb))
                         # print(verb, pos_verb)
 
-                        triple_string = f'{relations_arg0}{tuples_delimiter}{relations_arg1}{tuples_delimiter}{verb}\n'
-                        relations.write(triple_string)
-                        details.write(triple_string)
+                        relations.write(f'{relations_arg0.replace(' ', '_')}{tuples_delimiter}{relations_arg1.replace(' ', '_')}{tuples_delimiter}{verb.replace(' ', '_')}\n')
+                        details.write(f'{details_arg0.replace(' ', '_')}{tuples_delimiter}{details_arg1.replace(' ', '_')}{tuples_delimiter}{verb.replace(' ', '_')}\n')
 
             line = raw_predictions.readline()
 
