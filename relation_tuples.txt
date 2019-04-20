@@ -1,51 +1,51 @@
-Kobe Bean Bryant	August 23, 1978	born
-Kobe Bean Bryant	an American former professional basketball player	is
-He	his entire 20-year career with the Los Angeles Lakers of the National Basketball Association	played
-He	the NBA	entered
-He	five NBA championships	won
-Bryant	an 18-time All - Star, 15-time member of the All - NBA Team, and 12-time member of the All - Defensive team	is
-He	the NBA	led
-He	third on the league 's all - time regular season scoring and fourth on the all - time postseason scoring list	ranks
-Bryant	the first guard in NBA history	is
-the first guard in NBA history	at least 20 seasons	to play
-Bryant	the son of former NBA player Joe Bryant	is
-He	a successful high school basketball career at Lower Merion High School in Pennsylvania	enjoyed
-where he	as the top high school basketball player in the country	was recognized
-he	for the NBA draft	declared
-he	by the Charlotte Hornets	draft and was selected
-the 13th overall	in the 1996 NBA draft	pick
-The Hornets	him	traded
+Kobe_Bean_Bryant	August_23,_1978	born
+Kobe_Bean_Bryant	an_American_former_professional_basketball_player	is
+He	his_entire_20-year_career_with_the_Los_Angeles_Lakers_of_the_National_Basketball_Association	played
+He	the_NBA	entered
+He	five_NBA_championships	won
+Bryant	an_18-time_All_-_Star,_15-time_member_of_the_All_-_NBA_Team,_and_12-time_member_of_the_All_-_Defensive_team	is
+He	the_NBA	led
+He	third_on_the_league_'s_all_-_time_regular_season_scoring_and_fourth_on_the_all_-_time_postseason_scoring_list	ranks
+Bryant	the_first_guard_in_NBA_history	is
+the_first_guard_in_NBA_history	at_least_20_seasons	to play
+Bryant	the_son_of_former_NBA_player_Joe_Bryant	is
+He	a_successful_high_school_basketball_career_at_Lower_Merion_High_School_in_Pennsylvania	enjoyed
+where_he	as_the_top_high_school_basketball_player_in_the_country	was recognized
+he	for_the_NBA_draft	declared
+he	by_the_Charlotte_Hornets	draft and was selected
+the_13th_overall	in_the_1996_NBA_draft	pick
+The_Hornets	him	traded
 Bryant	himself	earned
-Bryant	the 1997 Slam Dunk Contest	by winning
-and he	an All - Star	was named
-Bryant and Shaquille O'Neal	the Lakers	led
-a civil suit	out of court	was settled
-the charges	eventually	were
-the charges	eventually	dropped
-the Lakers	the 2004 NBA Finals	lost
-O'Neal	to the Miami Heat and Bryant	was traded
-O'Neal	the cornerstone of the Lakers	became
-He	the NBA	led
-the second most points	in a single game in league history behind Wilt Chamberlain 's 100-point game	scored
-Bryant	the regular season 's Most Valuable Player Award	was awarded
-After	in the 2008 NBA Finals	losing
-he	the Lakers	led
-he	the Finals MVP Award	earning
-He	among the top players in the league	continued to be
-he	a torn Achilles tendon	suffered
-a torn Achilles	at age 34	tendon
-his play	the following two years by season - ending injuries to his knee and shoulder	was limited
-season	injuries to his knee and shoulder	ending
-he	that he would retire after the 2015–16 season	announced
-that he	after the 2015–16 season	would retire
-Bryant	the youngest player in league history	became
-the	30,000 career points	to reach
-He	the all - time leading scorer in Lakers franchise history on February 1, 2010	became
-the all - time	scorer	leading
-he	Jerry West	surpassed
-Bryant	to start the All - Star Game	was chosen
-he	that game	to start
-and	to start that game for a record 18 consecutive appearances until his retirement	he would continue to be selected
-His four All - Star MVP Awards	for the most in NBA history	are tied
-he	gold medals	won
-Bryant	the Academy Award	won
+Bryant	the_1997_Slam_Dunk_Contest	by winning
+and_he	an_All_-_Star	was named
+Bryant_and_Shaquille_O'Neal	the_Lakers	led
+a_civil_suit	out_of_court	was settled
+the_charges	eventually	were
+the_charges	eventually	dropped
+the_Lakers	the_2004_NBA_Finals	lost
+O'Neal	to_the_Miami_Heat_and_Bryant	was traded
+O'Neal	the_cornerstone_of_the_Lakers	became
+He	the_NBA	led
+the_second_most_points	in_a_single_game_in_league_history_behind_Wilt_Chamberlain_'s_100-point_game	scored
+Bryant	the_regular_season_'s_Most_Valuable_Player_Award	was awarded
+After	in_the_2008_NBA_Finals	losing
+he	the_Lakers	led
+he	the_Finals_MVP_Award	earning
+He	among_the_top_players_in_the_league	continued to be
+he	a_torn_Achilles_tendon	suffered
+a_torn_Achilles	at_age_34	tendon
+his_play	the_following_two_years_by_season_-_ending_injuries_to_his_knee_and_shoulder	was limited
+season	injuries_to_his_knee_and_shoulder	ending
+he	that_he_would_retire_after_the_2015–16_season	announced
+that_he	after_the_2015–16_season	would retire
+Bryant	the_youngest_player_in_league_history	became
+the	30,000_career_points	to reach
+He	the_all_-_time_leading_scorer_in_Lakers_franchise_history_on_February_1,_2010	became
+the_all_-_time	scorer	leading
+he	Jerry_West	surpassed
+Bryant	to_start_the_All_-_Star_Game	was chosen
+he	that_game	to start
+and	to_start_that_game_for_a_record_18_consecutive_appearances_until_his_retirement	he would continue to be selected
+His_four_All_-_Star_MVP_Awards	for_the_most_in_NBA_history	are tied
+he	gold_medals	won
+Bryant	the_Academy_Award	won
