@@ -26,9 +26,9 @@ with open(clusters_file, mode = 'a') as f:
             for i in range(index[0], index[1] + 1):
                 entity += text[i] + ' '
             entity = entity.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
-            print(f'[{index[0]}, {index[1]}] >> ' + entity)
             line += f"('{entity}',{index}), "
             
         f.write(line[:-2])  # [:-2] to remove trailing comma and space
         f.write(']')
     f.write('}')
+
