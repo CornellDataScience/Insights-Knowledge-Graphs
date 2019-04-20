@@ -1,3 +1,5 @@
+#https://demo.allennlp.org/coreference-resolution/NzA1Mjgw
+
 from allennlp.predictors.predictor import Predictor
 predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/coref-model-2018.02.05.tar.gz")
 
