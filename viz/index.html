@@ -34,18 +34,21 @@ d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge
       .style("stroke", "#aaa")
 
   var relations = svg
-    .selectAll("text")
+    .selectAll(".relations")
     .data(data.links)
     .enter()
     .append("text")
+      .attr("class", "relations")
       .text(function(d) {return d.name})
   
-  // var entities = svg
-  //   .selectAll("text")
-  //   .data(data.nodes)
-  //   .enter()
-  //   .append("text")
-  //     .text("entity")
+  var entities = svg
+    .selectAll(".entities")
+    .data(data.nodes)
+    .enter()
+    .append("text")
+      .attr("class", "entities")
+      .text(function(d) {return d.name})
+
 
 
   // Initialize the nodes
@@ -84,9 +87,9 @@ d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge
       .attr("x", function(d) { return (d.source.x + d.target.x) / 2.0; })
       .attr("y", function(d) { return (d.source.y + d.target.y) / 2.0; });
 
-    // entities
-    //   .attr("x", function (d) { return d.x+6; })
-    //   .attr("y", function(d) { return d.y-6; });
+    entities
+      .attr("x", function (d) { return d.x+6; })
+      .attr("y", function(d) { return d.y-6; });
   }
 
 });
