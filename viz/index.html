@@ -12,7 +12,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
   width = 400 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+  height = 800 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -23,7 +23,7 @@ var svg = d3.select("#my_dataviz")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/rel_template.json", function( data) {
+d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/relations.json", function( data) {
 
   // Initialize the links
   var link = svg
@@ -41,6 +41,7 @@ d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge
     .append("circle")
       .attr("r", 20)
       .style("fill", "#69b3a2")
+			
 
   // Let's list the force we wanna apply on the network
   var simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
@@ -48,7 +49,7 @@ d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge
             .id(function(d) { return d.id; })                     // This provide  the id of a node
             .links(data.links)                                    // and this the list of links
       )
-      .force("charge", d3.forceManyBody().strength(-400))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force("charge", d3.forceManyBody().strength(-800))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
       .on("end", ticked);
 
