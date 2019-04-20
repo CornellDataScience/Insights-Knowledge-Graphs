@@ -336,7 +336,7 @@ int main(int argc,char**argv)
     cout<<"learing rate = "<<rate<<endl;
     cout<<"margin = "<<margin<<endl;
     if (method)
-        version = "bern";
+        version = "csv";
     else
         version = "unif";
     cout<<"method = "<<version<<endl;
