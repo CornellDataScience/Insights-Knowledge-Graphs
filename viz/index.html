@@ -33,6 +33,21 @@ d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge
     .append("line")
       .style("stroke", "#aaa")
 
+  var relations = svg
+    .selectAll("text")
+    .data(data.links)
+    .enter()
+    .append("text")
+      .text(function(d) {return d.name})
+  
+  // var entities = svg
+  //   .selectAll("text")
+  //   .data(data.nodes)
+  //   .enter()
+  //   .append("text")
+  //     .text("entity")
+
+
   // Initialize the nodes
   var node = svg
     .selectAll("circle")
@@ -56,14 +71,22 @@ d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge
   // This function is run at each iteration of the force algorithm, updating the nodes position.
   function ticked() {
     link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
 
     node
-         .attr("cx", function (d) { return d.x+6; })
-         .attr("cy", function(d) { return d.y-6; });
+      .attr("cx", function (d) { return d.x+6; })
+      .attr("cy", function(d) { return d.y-6; });
+    
+    relations
+      .attr("x", function(d) { return (d.source.x + d.target.x) / 2.0; })
+      .attr("y", function(d) { return (d.source.y + d.target.y) / 2.0; });
+
+    // entities
+    //   .attr("x", function (d) { return d.x+6; })
+    //   .attr("y", function(d) { return d.y-6; });
   }
 
 });

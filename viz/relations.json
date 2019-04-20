@@ -45,49 +45,59 @@
 
     {
       "source": 1,
-      "target": 2
+      "target": 2,
+      "name": "played at"
     },
     {
       "source": 1,
-      "target": 3
+      "target": 3,
+      "name": "worked at"
     },
     {
       "source": 1,
-      "target": 4
+      "target": 4,
+      "name": "was born in"
     },
 
     {
       "source": 1,
-      "target": 5
+      "target": 5,
+      "name": "lived in"
     },
             {
       "source": 1,
-      "target": 6
+      "target": 6,
+      "name": "married to"
     }
     ,
 
     {
       "source": 1,
-      "target": 10
+      "target": 10,
+      "name": "ate"
     },
      {
       "source": 8,
-      "target": 3
+      "target": 3,
+      "name": "was once"
     }
     ,
     {
       "source": 4,
-      "target": 5
+      "target": 5,
+      "name": "grew up into"
     }
     ,
 
     {
       "source": 4,
-      "target": 9
+      "target": 9,
+      "name": "loved"
     },
     {
       "source": 5,
-      "target": 10
+      "target": 10,
+      "name": "was best friends with"
     }
   ]
 }
