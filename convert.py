@@ -66,8 +66,9 @@ if __name__ == '__main__':
                         pos_verb = tag(tokenize(verb))
                         # print(verb, pos_verb)
 
-                        relations.write(f'{relations_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{relations_arg1}\n')
-                        details.write(f'{details_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{details_arg1}\n')
+                        triple_string = f'{relations_arg0}{tuples_delimiter}{relations_arg1}{tuples_delimiter}{verb}\n'
+                        relations.write(triple_string)
+                        details.write(triple_string)
 
             line = raw_predictions.readline()
 
