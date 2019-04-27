@@ -1,0 +1,103 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Kobe Bryant"
+    },
+    {
+      "id": 2,
+      "name": "Joe Bryant"
+    },
+    {
+      "id": 3,
+      "name": "NBA"
+    },
+    {
+      "id": 4,
+      "name": "LA Lakers"
+    },
+    {
+      "id": 5,
+      "name": "Hornets"
+    },
+    {
+      "id": 6,
+      "name": "Vasha Bryant"
+    },
+    {
+      "id": 7,
+      "name": "Phil Jackson"
+    },
+    {
+      "id": 8,
+      "name": "Dwight Howard"
+    },
+    {
+      "id": 9,
+      "name": "CAT"
+    },
+    {
+      "id": 10,
+      "name": "Michael Jackson"
+    }
+  ],
+  "links": [
+
+    {
+      "source": 1,
+      "target": 2,
+      "name": "played at"
+    },
+    {
+      "source": 1,
+      "target": 3,
+      "name": "worked at"
+    },
+    {
+      "source": 1,
+      "target": 4,
+      "name": "was born in"
+    },
+
+    {
+      "source": 1,
+      "target": 5,
+      "name": "lived in"
+    },
+            {
+      "source": 1,
+      "target": 6,
+      "name": "married to"
+    }
+    ,
+
+    {
+      "source": 1,
+      "target": 10,
+      "name": "ate"
+    },
+     {
+      "source": 8,
+      "target": 3,
+      "name": "was once"
+    }
+    ,
+    {
+      "source": 4,
+      "target": 5,
+      "name": "grew up into"
+    }
+    ,
+
+    {
+      "source": 4,
+      "target": 9,
+      "name": "loved"
+    },
+    {
+      "source": 5,
+      "target": 10,
+      "name": "was best friends with"
+    }
+  ]
+}

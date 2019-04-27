@@ -11,7 +11,7 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
-  width = 400 - margin.left - margin.right,
+  width = 1000 - margin.left - margin.right,
   height = 800 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -33,6 +33,24 @@ d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge
     .append("line")
       .style("stroke", "#aaa")
 
+  var relations = svg
+    .selectAll(".relations")
+    .data(data.links)
+    .enter()
+    .append("text")
+      .attr("class", "relations")
+      .text(function(d) {return d.name})
+  
+  var entities = svg
+    .selectAll(".entities")
+    .data(data.nodes)
+    .enter()
+    .append("text")
+      .attr("class", "entities")
+      .text(function(d) {return d.name})
+
+
+
   // Initialize the nodes
   var node = svg
     .selectAll("circle")
@@ -49,21 +67,29 @@ d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge
             .id(function(d) { return d.id; })                     // This provide  the id of a node
             .links(data.links)                                    // and this the list of links
       )
-      .force("charge", d3.forceManyBody().strength(-800))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force("charge", d3.forceManyBody().strength(-10))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
       .on("end", ticked);
 
   // This function is run at each iteration of the force algorithm, updating the nodes position.
   function ticked() {
     link
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
+      .attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
 
     node
-         .attr("cx", function (d) { return d.x+6; })
-         .attr("cy", function(d) { return d.y-6; });
+      .attr("cx", function (d) { return d.x+6; })
+      .attr("cy", function(d) { return d.y-6; });
+    
+    relations
+      .attr("x", function(d) { return (d.source.x + d.target.x) / 2.0; })
+      .attr("y", function(d) { return (d.source.y + d.target.y) / 2.0; });
+
+    entities
+      .attr("x", function (d) { return d.x+6; })
+      .attr("y", function(d) { return d.y-6; });
   }
 
 });
