@@ -6,93 +6,156 @@
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
+<style>
+  text{font-family: "Gill Sans"}
+</style>
 
 <script>
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
-  width = 1000 - margin.left - margin.right,
-  height = 800 - margin.top - margin.bottom;
+  // set the dimensions and margins of the graph
+  var margin = { top: 200, right: 30, bottom: 30, left: 40 },
+    width = 1000 - margin.left - margin.right,
+    height = 800 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+  // append the svg object to the body of the page
+  var svg = d3.select("#my_dataviz")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/relations.json", function( data) {
+  d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/old_relations.json", function (data) {
 
-  // Initialize the links
-  var link = svg
-    .selectAll("line")
-    .data(data.links)
-    .enter()
-    .append("line")
+     
+
+        // Initialize the links
+    var link = svg
+      .selectAll("line")
+      .data(data.links)
+      .enter()
+      .append("line")
       .style("stroke", "#aaa")
+      .attr("id", d=> "link"+d.source+d.target);
 
-  var relations = svg
-    .selectAll(".relations")
-    .data(data.links)
-    .enter()
-    .append("text")
-      .attr("class", "relations")
-      .text(function(d) {return d.name})
-  
-  var entities = svg
-    .selectAll(".entities")
-    .data(data.nodes)
-    .enter()
-    .append("text")
-      .attr("class", "entities")
-      .text(function(d) {return d.name})
-
-
-
-  // Initialize the nodes
-  var node = svg
-    .selectAll("circle")
-    .data(data.nodes)
-    .enter()
-    .append("circle")
-      .attr("r", 20)
+    // Initialize the nodes
+    var node = svg
+      .selectAll("circle")
+      .data(data.nodes)
+      .enter()
+      .append("circle")
+      .attr("r", 10)
       .style("fill", "#69b3a2")
-			
+      .on("mouseover",function(d){
+        data.links.forEach(function(l,i){
+          if(l.source.id === d.id){
+            d3.select("#link"+d.id+l.target.id)
+              .style("stroke","red");
+          } else if(l.target.id === d.id){
+            d3.select("#link"+l.source.id+d.id)
+              .style("stroke","red");
+          }
+        })
+        d3.select("#node"+d.id).style("fill","red");
+      })
+      .on("mouseout",function(d){
+        d3.select("#node"+d.id).style("fill","#69b3a2");
+        data.links.forEach(function(l,i){
+          if(l.source.id === d.id){
+            d3.select("#link"+d.id+l.target.id)
+              .style("stroke","black");
+          } else if(l.target.id === d.id){
+            d3.select("#link"+l.source.id+d.id)
+              .style("stroke","black");
+          }
+        })
+      })
+      .call( d3.drag().on("start",dragstart).on("drag",dragging).on("end",dragend) )
+      .attr("id", d => "node"+d.id);
 
-  // Let's list the force we wanna apply on the network
-  var simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
+    var entities = svg
+      .selectAll(".entities")
+      .data(data.nodes)
+      .enter()
+      .append("text")
+      .attr("class", "entities")
+      .text(function (d) { return d.name })
+
+
+
+    var relations = svg
+      .selectAll(".relations")
+      .data(data.links)
+      .enter()
+      .append("text")
+      .attr("class", "relations")
+      .text(function (d) { return d.name })
+
+    // Let's list the force we wanna apply on the network
+    var simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
       .force("link", d3.forceLink()                               // This force provides links between nodes
-            .id(function(d) { return d.id; })                     // This provide  the id of a node
-            .links(data.links)                                    // and this the list of links
+        .id(function (d) { return d.id; })                     // This provide  the id of a node
+        .links(data.links)                                    // and this the list of links
       )
-      .force("charge", d3.forceManyBody().strength(-10))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force("charge", d3.forceManyBody().strength(-1000))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
-      .on("end", ticked);
+      .on("tick", ticked);
 
-  // This function is run at each iteration of the force algorithm, updating the nodes position.
-  function ticked() {
-    link
-      .attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
+    function dragstart(d) {
+      if (!d3.event.active) {
+        
+        simulation.alphaTarget(0.08).restart();
+      }
 
-    node
-      .attr("cx", function (d) { return d.x+6; })
-      .attr("cy", function(d) { return d.y-6; });
-    
-    relations
-      .attr("x", function(d) { return (d.source.x + d.target.x) / 2.0; })
-      .attr("y", function(d) { return (d.source.y + d.target.y) / 2.0; });
+      d.fx = d3.event.x;
+      d.fy = d3.event.y;
 
-    entities
-      .attr("x", function (d) { return d.x+6; })
-      .attr("y", function(d) { return d.y-6; });
-  }
+      
+    }
+    function dragging(d) {
 
-});
+      d.fx = d3.event.x;
+      d.fy = d3.event.y;
+      
+
+    }
+    function dragend(d) {
+
+      // End dragging a circle, make sure the simulation has enough alpha left to fix things afterwards
+      if (!d3.event.active) {
+        simulation.alphaTarget(0); // Allow the simulation to cool completely again
+        
+      }
+
+      // Remember to null out your .fx and .fy so that d3 can begin simulating the dragged point once more
+      d.fx = null;
+      d.fy = null;
+
+    }
+
+    // This function is run at each iteration of the force algorithm, updating the nodes position.
+    function ticked() {
+      link
+        .attr("x1", function (d) { return d.source.x; })
+        .attr("y1", function (d) { return d.source.y; })
+        .attr("x2", function (d) { return d.target.x; })
+        .attr("y2", function (d) { return d.target.y; });
+
+      node
+        .attr("cx", function (d) { return d.x + 6; })
+        .attr("cy", function (d) { return d.y - 6; });
+
+      relations
+        .attr("x", function (d) { return (d.source.x + d.target.x) / 2.0; })
+        .attr("y", function (d) { return (d.source.y + d.target.y) / 2.0; });
+
+      entities
+        .attr("x", function (d) { return d.x + 6; })
+        .attr("y", function (d) { return d.y - 6; });
+    }
+
+  });
 
 
 </script>

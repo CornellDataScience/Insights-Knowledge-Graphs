@@ -39,10 +39,25 @@
     {
       "id": 10,
       "name": "Michael Jackson"
+    },
+    {
+      "id": 11,
+      "name": "Timberwolves"
+    },
+    {
+      "id": 12,
+      "name": "Lebron James"
+    },
+    {
+      "id": 13,
+      "name": "D Wade"
+    },
+    {
+      "id": 14,
+      "name": "Miami"
     }
   ],
   "links": [
-
     {
       "source": 1,
       "target": 2,
@@ -58,37 +73,31 @@
       "target": 4,
       "name": "was born in"
     },
-
     {
       "source": 1,
       "target": 5,
       "name": "lived in"
     },
-            {
+    {
       "source": 1,
       "target": 6,
       "name": "married to"
-    }
-    ,
-
+    },
     {
       "source": 1,
       "target": 10,
       "name": "ate"
     },
-     {
+    {
       "source": 8,
       "target": 3,
       "name": "was once"
-    }
-    ,
+    },
     {
       "source": 4,
       "target": 5,
       "name": "grew up into"
-    }
-    ,
-
+    },
     {
       "source": 4,
       "target": 9,
@@ -98,6 +107,31 @@
       "source": 5,
       "target": 10,
       "name": "was best friends with"
+    },
+    {
+      "source": 9,
+      "target": 11,
+      "name": "played for"
+    },
+    {
+      "source": 11,
+      "target": 12,
+      "name": "with"
+    },
+    {
+      "source": 12,
+      "target": 13,
+      "name": "with"
+    },
+    {
+      "source": 13,
+      "target": 14,
+      "name": "with"
+    },
+    {
+      "source": 14,
+      "target": 13,
+      "name": "with"
     }
   ]
 }
