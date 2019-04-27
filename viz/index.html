@@ -6,6 +6,9 @@
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
+<style>
+  text{font-family: "Gill Sans"}
+</style>
 
 <script>
 
@@ -25,14 +28,51 @@
 
   d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/old_relations.json", function (data) {
 
+     
+
+        // Initialize the links
+    var link = svg
+      .selectAll("line")
+      .data(data.links)
+      .enter()
+      .append("line")
+      .style("stroke", "#aaa")
+      .attr("id", d=> "link"+d.source+d.target);
+
     // Initialize the nodes
     var node = svg
       .selectAll("circle")
       .data(data.nodes)
       .enter()
       .append("circle")
-      .attr("r", 20)
+      .attr("r", 10)
       .style("fill", "#69b3a2")
+      .on("mouseover",function(d){
+        data.links.forEach(function(l,i){
+          if(l.source.id === d.id){
+            d3.select("#link"+d.id+l.target.id)
+              .style("stroke","red");
+          } else if(l.target.id === d.id){
+            d3.select("#link"+l.source.id+d.id)
+              .style("stroke","red");
+          }
+        })
+        d3.select("#node"+d.id).style("fill","red");
+      })
+      .on("mouseout",function(d){
+        d3.select("#node"+d.id).style("fill","#69b3a2");
+        data.links.forEach(function(l,i){
+          if(l.source.id === d.id){
+            d3.select("#link"+d.id+l.target.id)
+              .style("stroke","black");
+          } else if(l.target.id === d.id){
+            d3.select("#link"+l.source.id+d.id)
+              .style("stroke","black");
+          }
+        })
+      })
+      .call( d3.drag().on("start",dragstart).on("drag",dragging).on("end",dragend) )
+      .attr("id", d => "node"+d.id);
 
     var entities = svg
       .selectAll(".entities")
@@ -42,13 +82,7 @@
       .attr("class", "entities")
       .text(function (d) { return d.name })
 
-    // Initialize the links
-    var link = svg
-      .selectAll("line")
-      .data(data.links)
-      .enter()
-      .append("line")
-      .style("stroke", "#aaa")
+
 
     var relations = svg
       .selectAll(".relations")
@@ -64,9 +98,41 @@
         .id(function (d) { return d.id; })                     // This provide  the id of a node
         .links(data.links)                                    // and this the list of links
       )
-      .force("charge", d3.forceManyBody().strength(-1800))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force("charge", d3.forceManyBody().strength(-1000))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
-      .on("end", ticked);
+      .on("tick", ticked);
+
+    function dragstart(d) {
+      if (!d3.event.active) {
+        
+        simulation.alphaTarget(0.08).restart();
+      }
+
+      d.fx = d3.event.x;
+      d.fy = d3.event.y;
+
+      
+    }
+    function dragging(d) {
+
+      d.fx = d3.event.x;
+      d.fy = d3.event.y;
+      
+
+    }
+    function dragend(d) {
+
+      // End dragging a circle, make sure the simulation has enough alpha left to fix things afterwards
+      if (!d3.event.active) {
+        simulation.alphaTarget(0); // Allow the simulation to cool completely again
+        
+      }
+
+      // Remember to null out your .fx and .fy so that d3 can begin simulating the dragged point once more
+      d.fx = null;
+      d.fy = null;
+
+    }
 
     // This function is run at each iteration of the force algorithm, updating the nodes position.
     function ticked() {
