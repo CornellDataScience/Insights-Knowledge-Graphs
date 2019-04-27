@@ -19,3 +19,6 @@ def create_id_files(triplefile, relationfile, entityfile):
     with open(entityfile, 'w') as outfile:
         outfile.write('\n'.join([entities[i] + "\t" + str(i) for i in range(len(entities))]))
         outfile.write('\n')
+
+if __name__ == '__main__':
+    create_id_files('../data/relation_tuples.txt', '../data/relation2id.txt', '../data/entity2id.txt')

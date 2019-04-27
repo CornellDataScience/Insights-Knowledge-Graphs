@@ -17,3 +17,6 @@ def to_json(eidfile, triplefile, jsonfile):
     
     with open(jsonfile, 'w') as outfile:
         outfile.write(json.dumps(jsondict))
+
+if __name__ == '__main__':
+    to_json('./data/entity2id.txt', './data/relation2id.txt', './viz/relations.json')
