@@ -1,69 +1,80 @@
-import ast, re
+import ast, re, nltk, json
 
 dir = 'relation extraction'
 relations_file = dir + '/relation_tuples.txt'
-coref_file = dir + '/coreference_output.txt'
+details_file = dir + '/detail_tuples.txt'
+coref_file = dir + '/coref_tuples.txt'
+coref_input_file = dir + '/coreference_output.txt'
 clusters_file = dir + '/clusters.txt'
 
 # Extract coreference data
-with open(coref_file) as f:
+with open(coref_input_file) as f:
     coref = ast.literal_eval(f.read())
     spans = coref['top_spans']
     clusters = coref['clusters']
     document = coref['document']
 
-# Create clusters file as a dictionary
+# Create clusters dictionary
 open(clusters_file, mode = 'w').close()
 with open(clusters_file, mode = 'a') as f:
+    indicies_dictionary = {} # key = index (ex. 11), value = index range (ex. (11,16))
+    equivalence_dictionary = {} # key = index range; value = clusterID
+    clusters_dictionary = {} # key = clusterID, value = most representative entity
     for equivalence_class in range(len(clusters)):
-        if equivalence_class == 0:
-            f.write('{' + f'{equivalence_class}: [')
-        else:
-            f.write(f', {equivalence_class}: [')
-
-        prediction = ''
-        for index in clusters[equivalence_class]:
+        equivalent_entities = []
+        for index_range in clusters[equivalence_class]:
+            index_range = tuple(index_range)
             entity = ''
-            for i in range(index[0], index[1] + 1):
+            for i in range(index_range[0], index_range[1] + 1):
                 entity += document[i] + ' '
-            entity = entity.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
-            prediction += f"('{entity}',{index}), "
-            
-        f.write(prediction[:-2])  # [:-2] to remove trailing comma and space
-        f.write(']')
-    f.write('}')
+                indicies_dictionary[i] = index_range
+            entity = entity.strip()#.replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+            equivalence_dictionary[index_range] = equivalence_class
+            equivalent_entities.append(entity)
+        #TODO: Reorder equivalent_entities into descending order of most frequent entities
+        #      Ultimatly want to extract most representative entity for class that is not a pronoun
+
+
+        representative_entity = equivalent_entities[0]
+        clusters_dictionary[equivalence_class] = representative_entity
+    json.dump(clusters_dictionary, f)
 
 # Get text from cluster document
 text = ' '.join(document)
 sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text.strip())
-for sentence in sentences:
-    pass
-    #sentence = sentence.replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+# sentence = sentence.replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
 
 # Run AllenNLP open extraction on text
 from allennlp.predictors.predictor import Predictor
 predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/openie-model.2018-08-20.tar.gz")
-
-open(dir + '/test.txt', mode = 'w').close()
-with open(dir + '/test.txt', mode = 'a') as f:
-    predictions = []
-    for sentence in sentences:
-        predictions.append(predictor.predict(sentence))
+predictions = [] # stores tuples in the form (prediction, token index, tokens in sentence)
+index = 0
+for sentence in sentences:
+    tokens = sentence.count(' ') + 1
+    predictions.append((predictor.predict(sentence), index, tokens))
+    index += tokens
 
 # Generate tuples from AllenNLP predictions
-for prediction in predictions:
+open(relations_file, mode='w').close()
+open(details_file, mode='w').close()
+open(coref_file, mode='w').close()
+
+for prediction_tuple in predictions:
+    prediction, index, tokens = prediction_tuple
     for d in prediction['verbs']:
         desc = d['description']
-        print(desc) # <--- last left off
-        break
+        print(f'{desc}, {index}, {tokens}')
+
         if '[ARG0: ' in desc and '[V: ' in desc and '[ARG1: ' in desc:                            
             verb_start = desc.find('[V:')
             verb_end = desc.find(']', verb_start)
             verb = desc[verb_start + 4 : verb_end]
 
+            # Create relation tuples
             relations_arg0 = desc[desc.find('[ARG0: ') + 7 : desc.find(']', desc.find('[ARG0: '))].replace(r' ,', r',')
             relations_arg1 = desc[desc.find('[ARG1: ') + 7 : desc.find(']', desc.find('[ARG1: '))].replace(r' ,', r',')
 
+            # Create detail tuples
             details_arg0 = desc[:verb_start]
             details_arg1 = desc[verb_end + 1:]
 
@@ -79,7 +90,19 @@ for prediction in predictions:
 
             details_arg0 = details_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
             details_arg1 = details_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
-                                
+            
+            # Create coreference tuples
+            coref_arg0_index = index + desc[:desc.find('[ARG0: ')].count(' ')
+            coref_arg0_tokens = desc[desc.find('[ARG0: ') + 7 : desc.find(']', desc.find('[ARG0: '))].count(' ') + 1
+            coref_arg1_index = index + desc[:desc.find('[ARG1: ')].count(' ') - 2
+            coref_arg1_tokens = desc[desc.find('[ARG1: ') + 7 : desc.find(']', desc.find('[ARG1: '))].count(' ') + 1
+
+            print(f'{relations_arg0}, {verb}, {relations_arg1}')
+            print(f'{coref_arg0_index}, size {coref_arg0_tokens}; {coref_arg1_index}, size {coref_arg1_tokens}')
+            
+            coref_arg0 = equivalence_dictionary.get(indicies_dictionary.get(coref_arg0_index))
+            coref_arg1 = equivalence_dictionary.get(indicies_dictionary.get(coref_arg0_index))
+
             # TODO: remove tuples with bad entities using POS tagger
             # pos_verb = tag(tokenize(verb))
             # print(verb, pos_verb)
@@ -91,9 +114,12 @@ for prediction in predictions:
             #verb = verb.replace(' ', '_')
 
             tuples_delimiter = ','
-            print(f'({relations_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{relations_arg1})\n')
-            #print(f'({details_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{details_arg1})\n')
-
+            with open(relations_file, mode='a') as f:
+                f.write(f'({relations_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{relations_arg1})\n')
+            with open(details_file, mode='a') as f:
+                f.write(f'({details_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{details_arg1})\n')
+            with open(coref_file, mode='a') as f:
+                f.write(f'({coref_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{coref_arg1})\n')
 
 
 print('DONE')

@@ -172,8 +172,8 @@ private:
 		            entity_vec = entity_tmp;
              	}
                 cout<<"epoch:"<<epoch<<' '<<res<<endl;
-                FILE* f2 = fopen(("../data/relation2vec."+version).c_str(),"w");
-                FILE* f3 = fopen(("../data/entity2vec."+version).c_str(),"w");
+                FILE* f2 = fopen(("./data/relation2vec."+version).c_str(),"w");
+                FILE* f3 = fopen(("./data/entity2vec."+version).c_str(),"w");
                 for (int i=0; i<relation_num; i++)
                 {
                     for (int ii=0; ii<n; ii++)
@@ -242,8 +242,8 @@ private:
 Train train;
 void prepare()
 {
-    FILE* f1 = fopen("../data/entity2id.txt","r");
-	FILE* f2 = fopen("../data/relation2id.txt","r");
+    FILE* f1 = fopen("./data/entity2id.txt","r");
+	FILE* f2 = fopen("./data/relation2id.txt","r");
 	int x;
 	while (fscanf(f1,"%s%d",buf,&x)==2)
 	{
@@ -259,7 +259,7 @@ void prepare()
 		id2relation[x]=st;
 		relation_num++;
 	}
-    FILE* f_kb = fopen("../data/relation_tuples.txt","r");
+    FILE* f_kb = fopen("./data/relation_tuples.txt","r");
 	while (fscanf(f_kb,"%s",buf)==1)
     {
         string s1=buf;
