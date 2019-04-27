@@ -1,4 +1,4 @@
-import numpy as py
+from get_id_vecs import *
 
 def combine_relations(R, thresh):
     """
@@ -21,8 +21,10 @@ def combine_relations(R, thresh):
                     newindices[indices.pop(j)] = i
     return newindices, combined
 
-def reduce_relations(ridfile, rvecfile, thresh):
+def reduce_relations(ridfile, rvecfile, reducefile, thresh):
     rids = get_ids(ridfile)
     rvecs = get_vectors(rvecfile)
     newids, rvecs = combine_relations(rvecs, thresh)
-    return [rids[i] for i in newids]
+    with open(reducefile, "w") as outfile:
+      for i in newids:
+        outfile.write("%s\t%s\n" %(rids[i], i))
