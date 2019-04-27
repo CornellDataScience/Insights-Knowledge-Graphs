@@ -1,64 +1,64 @@
-(2,born,2)
-(2,is,2)
-(0,played,0)
-(0,entered,0)
-(0,won,0)
-(2,is,2)
-(0,led,0)
-(0,ranks,0)
-(0,is,0)
-(0,regarded,0)
-(2,is,2)
-(None,play,None)
-(2,is,2)
-(0,enjoyed,0)
-(None,recognized,None)
-(None,declared,None)
-(None,was,None)
-(None,selected,None)
-(None,pick,None)
-(5,traded,5)
-(7,earned,7)
-(7,winning,7)
-(7,named,7)
-(7,led,7)
-(None,was,None)
-(None,accused,None)
-(None,were,None)
-(None,dropped,None)
-(None,was,None)
-(None,settled,None)
-(6,lost,6)
-(None,was,None)
-(None,traded,None)
-(None,became,None)
-(7,led,7)
-(None,scored,None)
-(None,scored,None)
-(7,awarded,7)
-(None,losing,None)
-(None,led,None)
-(7,earning,7)
-(7,continued,7)
-(7,be,7)
-(7,suffered,7)
-(None,tendon,None)
-(7,was,7)
-(7,limited,7)
-(None,ending,None)
-(7,announced,7)
-(7,retire,7)
-(None,became,None)
-(None,reach,None)
-(7,became,7)
-(None,leading,None)
-(7,surpassed,7)
-(None,chosen,None)
-(7,start,7)
-(7,continue,7)
-(7,selected,7)
-(7,start,7)
-(7,are,7)
-(7,tied,7)
-(None,won,None)
-(None,won,None)
+"Bryant","born","August 23, 1978"
+"Bryant","is","an American former professional basketball player"
+"an American former professional basketball player","played","an American former professional basketball player"
+"an American former professional basketball player","entered","NBA"
+"an American former professional basketball player","won","NBA"
+"Bryant","is","the league"
+"an American former professional basketball player","led","NBA"
+"an American former professional basketball player","ranks","the league"
+"an American former professional basketball player","is","as one of the greatest basketball players of all time.[3"
+"an American former professional basketball player","regarded","as one of the greatest basketball players of all time.[3"
+"Bryant","is","NBA"
+"NBA","play","at least 20 seasons"
+"Bryant","is","Bryant"
+"an American former professional basketball player","enjoyed","a successful high school basketball career at Lower Merion High School in Pennsylvania"
+"he","recognized","as the top high school basketball player in the country"
+"he","declared","NBA"
+"he","was","the Charlotte Hornets"
+"he","selected","the Charlotte Hornets"
+"the 13th overall","pick","NBA"
+"the Charlotte Hornets","traded","him"
+"Bryant","earned","Bryant"
+"Bryant","winning","the 1997 Slam Dunk Contest"
+"Bryant","named","an All - Star"
+"Bryant","led","the Lakers"
+"Bryant","was","accused"
+"Bryant","accused","of sexual assault"
+"the charges","were","eventually"
+"the charges","dropped","eventually"
+"a civil suit","was","settled out of court"
+"a civil suit","settled","out of court"
+"the Lakers","lost","the 2004 NBA Finals"
+"O'Neal","was","traded"
+"O'Neal","traded","Bryant"
+"O'Neal","became","the Lakers"
+"Bryant","led","NBA"
+"he","scored","the Lakers"
+"the second most points","scored","Wilt Chamberlain 's"
+"Bryant","awarded","the regular season 's Most Valuable Player Award"
+"After","losing","the Lakers"
+"he","led","the Lakers"
+"Bryant","earning","the Lakers"
+"Bryant","continued","the league"
+"Bryant","be","the league"
+"Bryant","suffered","a torn Achilles tendon"
+"a torn Achilles","tendon","at age 34"
+"Bryant","was","Bryant"
+"Bryant","limited","Bryant"
+"season","ending","Bryant"
+"Bryant","announced","Bryant"
+"Bryant","retire","the 2005–06 and 2006–07 seasons"
+"Bryant","became","the youngest player in league history"
+"the","reach","30,000 career points"
+"Bryant","became","the Lakers"
+"the all - time","leading","scorer"
+"Bryant","surpassed","Jerry West"
+"Bryant","chosen","an All - Star"
+"Bryant","start","an All - Star"
+"Bryant","continue","to"
+"Bryant","selected","Bryant"
+"Bryant","start","that game"
+"Bryant","are","tied"
+"Bryant","tied","NBA"
+"he","won","gold medals"
+"Bryant","won","the Academy Award"
