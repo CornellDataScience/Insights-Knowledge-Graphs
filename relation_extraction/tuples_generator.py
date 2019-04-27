@@ -2,13 +2,14 @@ import ast, re, nltk, json
 from allennlp.predictors.predictor import Predictor
 
 # Define file locations
-relations_file = 'relation_extraction/relation_tuples.txt'
-details_file = 'relation_extraction/detail_tuples.txt'
-coref_file = 'relation_extraction/coref_tuples.txt'
+raw_data_file = 'data/raw_data.txt'
+relations_file = 'data/relation_tuples.txt'
+details_file = 'data/detail_tuples.txt'
+coref_file = 'data/coref_tuples.txt'
 
 # Run AllenNLP coreference resolution on raw text
 predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/coref-model-2018.02.05.tar.gz")
-with open('raw_data.txt', encoding='UTF-8') as f:
+with open(raw_data_file, encoding='UTF-8') as f:
     raw_data = f.read()
 coref = predictor.predict(raw_data)
 clusters = coref['clusters']
