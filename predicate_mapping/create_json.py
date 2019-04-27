@@ -1,5 +1,14 @@
 import json
-from get_id_vecs import get_ids
+import numpy as np
+
+def get_ids(idfile):
+    with open(idfile, 'r') as infile:
+        lines = infile.read().split('\n')[:-1]
+        ilist = [''] * len(lines)
+        for pair in lines:
+            p = pair.split('\t')
+            ilist[int(p[1])] = p[0]
+    return ilist
 
 def to_json(eidfile, triplefile, jsonfile):
     jsondict = {"nodes": [], "links": []}
@@ -18,5 +27,8 @@ def to_json(eidfile, triplefile, jsonfile):
     with open(jsonfile, 'w') as outfile:
         outfile.write(json.dumps(jsondict))
 
+def main():
+    to_json('./data/entity2id.txt', './data/relation_tuples.txt', './viz/relations.json')
+
 if __name__ == '__main__':
-    to_json('./data/entity2id.txt', './data/relation2id.txt', './viz/relations.json')
+    main()
