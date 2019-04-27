@@ -26,5 +26,8 @@ def reduce_relations(ridfile, rvecfile, reducefile, thresh):
     rvecs = get_vectors(rvecfile)
     newids, rvecs = combine_relations(rvecs, thresh)
     with open(reducefile, "w") as outfile:
-      for i in newids:
-        outfile.write("%s\t%s\n" %(rids[i], i))
+        for i in newids:
+          outfile.write("%s\t%s\n" %(rids[i], i))
+
+if __name__ == '__main__':
+    reduce_relations('../data/relation2id.txt', '../data/relation2vec.csv', '../data/combined_relations.txt', 0.22)

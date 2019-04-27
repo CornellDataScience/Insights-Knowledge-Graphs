@@ -15,5 +15,7 @@ def create_id_files(triplefile, relationfile, entityfile):
     relations = list(relations)
     with open(relationfile, 'w') as outfile:
         outfile.write('\n'.join([relations[i] + '\t' + str(i) for i in range(len(relations))]))
+        outfile.write('\n')
     with open(entityfile, 'w') as outfile:
         outfile.write('\n'.join([entities[i] + "\t" + str(i) for i in range(len(entities))]))
+        outfile.write('\n')
