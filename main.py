@@ -4,7 +4,7 @@ from predicate_mapping.generate_ids import create_id_files
 from predicate_mapping.combine_relations import reduce_relations, heat_map
 from predicate_mapping.create_json import to_json
 from relation_extraction.scrape import read_page
-from relation_extraction.tuples_generator import create_tuples
+#from relation_extraction.tuples_generator import create_tuples
 
 def tuple2json():
     tuplefile = './data/relation_tuples.txt'
@@ -15,11 +15,14 @@ def tuple2json():
 
     create_id_files(tuplefile, ridfile, eidfile)
     subprocess.call(['./embeddings/Train_TransE'])
-    reduce_relations(ridfile, rvecfile, thresh, './data/combined_relations.txt')
+    combined_rels = reduce_relations(ridfile, rvecfile, thresh, './data/combined_relations.txt')
     heat_map(ridfile, rvecfile, thresh, './data/relation_heat_map.png')
-    to_json(eidfile, tuplefile, './viz/relations.json')
+    to_json(eidfile, ridfile, tuplefile, combined_rels, './viz/relations.json',)
 
 def main(url):
-    read_page(url)
-    create_tuples()
+    #read_page(url)
+    #create_tuples()
+    tuple2json()
+
+if __name__ == "__main__":
     tuple2json()
