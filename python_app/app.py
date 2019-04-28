@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+from ../relation_extraction import 
 
 app = Flask(__name__)
 
