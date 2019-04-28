@@ -56,7 +56,7 @@ def create_tuples():
         pos = nltk.pos_tag(nltk.tokenize.word_tokenize(representative_entity))[0][1]
         while len(equivalent_entities) > 0 and 'PRP' in pos:
             representative_entity = equivalent_entities.pop(0)
-            pos = nltk.pos_tag(nltk.tokenize.word_tokenize(representative_entity))[0][1]           
+            pos = nltk.pos_tag(nltk.tokenize.word_tokenize(representative_entity))[0][1]        
         clusters_dictionary[equivalence_class] = representative_entity
 
     # Get text from cluster document
@@ -81,7 +81,6 @@ def create_tuples():
         prediction, index = prediction_tuple
         for d in prediction['verbs']:
             desc = d['description']
-
             if '[ARG0: ' in desc and '[V: ' in desc and '[ARG1: ' in desc:                            
                 verb_start = desc.find('[V:')
                 verb_end = desc.find(']', verb_start)
@@ -90,6 +89,12 @@ def create_tuples():
                 # Create relation tuples
                 relations_arg0 = desc[desc.find('[ARG0: ') + 7 : desc.find(']', desc.find('[ARG0: '))].replace(r' ,', r',')
                 relations_arg1 = desc[desc.find('[ARG1: ') + 7 : desc.find(']', desc.find('[ARG1: '))].replace(r' ,', r',')
+
+                # Remove tuples with non-noun entities
+                pos0 = [token[1] for token in nltk.pos_tag(nltk.tokenize.word_tokenize(relations_arg0))]
+                pos1 = [token[1] for token in nltk.pos_tag(nltk.tokenize.word_tokenize(relations_arg1))]
+                if 'VB' in pos0[0] or 'VB' in pos1[0]:  # Entity starts with a verb
+                    continue
 
                 # Create detail tuples
                 details_arg0 = desc[:verb_start]
@@ -106,7 +111,7 @@ def create_tuples():
                     details_arg1 = details_arg1[:i] + details_arg1[i+7:j] + details_arg1[j+1:]
                 
                 # Create coreference tuples
-                # TODO: i don't think the second index works right...
+                # TODO: check second index
                 coref_arg0_index = index + desc[:desc.find('[ARG0: ')].count(' ')
                 coref_arg0_tokens = desc[desc.find('[ARG0: ') + 7 : desc.find(']', desc.find('[ARG0: '))].count(' ') + 1
                 coref_arg1_index = index + desc[:desc.find('[ARG1: ')].count(' ') - 2
@@ -143,18 +148,13 @@ def create_tuples():
                 coref_arg0 = coref_arg0.replace(' ', '_')
                 coref_arg1 = coref_arg1.replace(' ', '_')
 
-                # Remove tuples with non-noun entities
-                pos0 = [token[1] for token in nltk.pos_tag(nltk.tokenize.word_tokenize(relations_arg0))]
-                pos1 = [token[1] for token in nltk.pos_tag(nltk.tokenize.word_tokenize(relations_arg1))]
-                #print(pos0, pos1)
-
                 # Write tuples to file
                 tuples_delimiter = '\t'
                 with open(relations_file, mode='a', encoding='UTF-8') as f:
-                    f.write(f'{relations_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{relations_arg1}\n')
+                    f.write(f'{relations_arg0}{tuples_delimiter}{relations_arg1}{tuples_delimiter}{verb}\n')
                 with open(details_file, mode='a', encoding='UTF-8') as f:
-                    f.write(f'{details_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{details_arg1}\n')
+                    f.write(f'{details_arg0}{tuples_delimiter}{details_arg1}{tuples_delimiter}{verb}\n')
                 with open(coref_file, mode='a', encoding='UTF-8') as f:
-                    f.write(f'{coref_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{coref_arg1}\n')
+                    f.write(f'{coref_arg0}{tuples_delimiter}{coref_arg1}{tuples_delimiter}{verb}\n')
 
     print('DONE')
