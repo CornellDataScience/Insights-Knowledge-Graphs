@@ -4,7 +4,7 @@ import sys
 
 def read_page(url):
     url_title = url[url.rfind('wiki')+5:]
-    myFile = open('data/raw_data.txt', 'w', encoding="utf-8")
+    myFile = open('../data/raw_data.txt', 'w', encoding="utf-8")
     print("reading page: " + url_title)
     page = requests.get(url)
     try:

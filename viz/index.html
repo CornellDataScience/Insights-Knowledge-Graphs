@@ -7,7 +7,9 @@
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 <style>
-  text{font-family: "Gill Sans"}
+  text {
+    font-family: "Gill Sans"
+  }
 </style>
 
 <script>
@@ -26,9 +28,9 @@
     .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/old_relations.json", function (data) {
+  d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/relations.json", function (data) {
 
-  var g = svg.append("g")
+    var g = svg.append("g")
     .attr("class", "everything");
 
         // Initialize the links
@@ -38,7 +40,7 @@
       .enter()
       .append("line")
       .style("stroke", "#aaa")
-      .attr("id", d=> "link"+d.source+d.target);
+      .attr("id", d => "link" + d.source + d.target);
 
     // Initialize the nodes
     var node = g.append("g")
@@ -48,32 +50,32 @@
       .append("circle")
       .attr("r", 10)
       .style("fill", "#69b3a2")
-      .on("mouseover",function(d){
-        data.links.forEach(function(l,i){
-          if(l.source.id === d.id){
-            d3.select("#link"+d.id+l.target.id)
-              .style("stroke","red");
-          } else if(l.target.id === d.id){
-            d3.select("#link"+l.source.id+d.id)
-              .style("stroke","red");
+      .on("mouseover", function (d) {
+        data.links.forEach(function (l, i) {
+          if (l.source.id === d.id) {
+            d3.select("#link" + d.id + l.target.id)
+              .style("stroke", "red");
+          } else if (l.target.id === d.id) {
+            d3.select("#link" + l.source.id + d.id)
+              .style("stroke", "red");
           }
         })
-        d3.select("#node"+d.id).style("fill","red");
+        d3.select("#node" + d.id).style("fill", "red");
       })
-      .on("mouseout",function(d){
-        d3.select("#node"+d.id).style("fill","#69b3a2");
-        data.links.forEach(function(l,i){
-          if(l.source.id === d.id){
-            d3.select("#link"+d.id+l.target.id)
-              .style("stroke","black");
-          } else if(l.target.id === d.id){
-            d3.select("#link"+l.source.id+d.id)
-              .style("stroke","black");
+      .on("mouseout", function (d) {
+        d3.select("#node" + d.id).style("fill", "#69b3a2");
+        data.links.forEach(function (l, i) {
+          if (l.source.id === d.id) {
+            d3.select("#link" + d.id + l.target.id)
+              .style("stroke", "black");
+          } else if (l.target.id === d.id) {
+            d3.select("#link" + l.source.id + d.id)
+              .style("stroke", "black");
           }
         })
       })
-      .call( d3.drag().on("start",dragstart).on("drag",dragging).on("end",dragend) )
-      .attr("id", d => "node"+d.id);
+      .call(d3.drag().on("start", dragstart).on("drag", dragging).on("end", dragend))
+      .attr("id", d => "node" + d.id);
 
     var entities = g.append("g")
       .selectAll(".entities")
@@ -109,27 +111,27 @@
 
     function dragstart(d) {
       if (!d3.event.active) {
-        
+
         simulation.alphaTarget(0.08).restart();
       }
 
       d.fx = d3.event.x;
       d.fy = d3.event.y;
 
-      
+
     }
     function dragging(d) {
 
       d.fx = d3.event.x;
       d.fy = d3.event.y;
-      
+
 
     }
     function dragend(d) {
 
       if (!d3.event.active) {
-        simulation.alphaTarget(0); 
-        
+
+        simulation.alphaTarget(0); // Allow the simulation to cool completely again
       }
 
       d.fx = null;

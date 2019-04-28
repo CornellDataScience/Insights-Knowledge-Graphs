@@ -1,17 +1,9 @@
 import ast, re, nltk, json
 from allennlp.predictors.predictor import Predictor
 
-def create_tuples():
-    # Define file locations
-    raw_data_file = 'data/raw_data.txt'
-    relations_file = 'data/relation_tuples.txt'
-    details_file = 'data/detail_tuples.txt'
-    coref_file = 'data/coref_tuples.txt'
-
+def main(raw_data):
     # Run AllenNLP coreference resolution on raw text
     predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/coref-model-2018.02.05.tar.gz")
-    with open(raw_data_file, encoding='UTF-8') as f:
-        raw_data = f.read()
     coref = predictor.predict(raw_data)
     clusters = coref['clusters']
     document = coref['document']
@@ -56,7 +48,7 @@ def create_tuples():
         pos = nltk.pos_tag(nltk.tokenize.word_tokenize(representative_entity))[0][1]
         while len(equivalent_entities) > 0 and 'PRP' in pos:
             representative_entity = equivalent_entities.pop(0)
-            pos = nltk.pos_tag(nltk.tokenize.word_tokenize(representative_entity))[0][1]        
+            pos = nltk.pos_tag(nltk.tokenize.word_tokenize(representative_entity))[0][1]           
         clusters_dictionary[equivalence_class] = representative_entity
 
     # Get text from cluster document
@@ -73,14 +65,15 @@ def create_tuples():
         index += tokens
 
     # Generate tuples from AllenNLP predictions
-    open(relations_file, mode='w').close()
-    open(details_file, mode='w').close()
-    open(coref_file, mode='w').close()
+    # open(relations_file, mode='w').close()
+    # open(details_file, mode='w').close()
+    # open(coref_file, mode='w').close()
 
     for prediction_tuple in predictions:
         prediction, index = prediction_tuple
         for d in prediction['verbs']:
             desc = d['description']
+
             if '[ARG0: ' in desc and '[V: ' in desc and '[ARG1: ' in desc:                            
                 verb_start = desc.find('[V:')
                 verb_end = desc.find(']', verb_start)
@@ -89,12 +82,6 @@ def create_tuples():
                 # Create relation tuples
                 relations_arg0 = desc[desc.find('[ARG0: ') + 7 : desc.find(']', desc.find('[ARG0: '))].replace(r' ,', r',')
                 relations_arg1 = desc[desc.find('[ARG1: ') + 7 : desc.find(']', desc.find('[ARG1: '))].replace(r' ,', r',')
-
-                # Remove tuples with non-noun entities
-                pos0 = [token[1] for token in nltk.pos_tag(nltk.tokenize.word_tokenize(relations_arg0))]
-                pos1 = [token[1] for token in nltk.pos_tag(nltk.tokenize.word_tokenize(relations_arg1))]
-                if 'VB' in pos0[0] or 'VB' in pos1[0]:  # Entity starts with a verb
-                    continue
 
                 # Create detail tuples
                 details_arg0 = desc[:verb_start]
@@ -111,7 +98,7 @@ def create_tuples():
                     details_arg1 = details_arg1[:i] + details_arg1[i+7:j] + details_arg1[j+1:]
                 
                 # Create coreference tuples
-                # TODO: check second index
+                # TODO: i don't think the second index works right...
                 coref_arg0_index = index + desc[:desc.find('[ARG0: ')].count(' ')
                 coref_arg0_tokens = desc[desc.find('[ARG0: ') + 7 : desc.find(']', desc.find('[ARG0: '))].count(' ') + 1
                 coref_arg1_index = index + desc[:desc.find('[ARG1: ')].count(' ') - 2
@@ -140,21 +127,14 @@ def create_tuples():
                 coref_arg0 = coref_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
                 coref_arg1 = coref_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
 
-                # Kevin hates spaces
-                relations_arg0 = relations_arg0.replace(' ', '_')
-                relations_arg1 = relations_arg1.replace(' ', '_')
-                details_arg0 = details_arg0.replace(' ', '_')
-                details_arg1 = details_arg1.replace(' ', '_')
-                coref_arg0 = coref_arg0.replace(' ', '_')
-                coref_arg1 = coref_arg1.replace(' ', '_')
-
                 # Write tuples to file
-                tuples_delimiter = '\t'
-                with open(relations_file, mode='a', encoding='UTF-8') as f:
-                    f.write(f'{relations_arg0}{tuples_delimiter}{relations_arg1}{tuples_delimiter}{verb}\n')
-                with open(details_file, mode='a', encoding='UTF-8') as f:
-                    f.write(f'{details_arg0}{tuples_delimiter}{details_arg1}{tuples_delimiter}{verb}\n')
-                with open(coref_file, mode='a', encoding='UTF-8') as f:
-                    f.write(f'{coref_arg0}{tuples_delimiter}{coref_arg1}{tuples_delimiter}{verb}\n')
+                result = ''
+                tuples_delimiter = ','
+                result += coref_arg0
+                result += tuples_delimiter
+                result += verb
+                result += tuples_delimiter
+                result += coref_arg1
+                result += '\n'
 
-    print('DONE')
+    return result

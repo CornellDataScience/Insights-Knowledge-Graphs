@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
-from test import test_1
+from scrape import read_page
+from tuples_generator import main
 
 app = Flask(__name__)
 
@@ -10,8 +11,8 @@ def my_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     text = request.form['text']
-    processed_text = text.upper()
-    return test_1(processed_text)
+    raw_data = read_page(text)
+    return main(raw_data)
 
 @app.route('/')
 def hello():
