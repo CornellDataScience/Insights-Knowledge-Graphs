@@ -150,10 +150,10 @@ for prediction_tuple in predictions:
             # Write tuples to file
             tuples_delimiter = '\t'
             with open(relations_file, mode='a', encoding='UTF-8') as f:
-                f.write(f'{relations_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{relations_arg1}\n')
+                f.write(f'{relations_arg0}{tuples_delimiter}{relations_arg1}{tuples_delimiter}{verb}\n')
             with open(details_file, mode='a', encoding='UTF-8') as f:
-                f.write(f'{details_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{details_arg1}\n')
+                f.write(f'{details_arg0}{tuples_delimiter}{details_arg1}{tuples_delimiter}{verb}\n')
             with open(coref_file, mode='a', encoding='UTF-8') as f:
-                f.write(f'{coref_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{coref_arg1}\n')
+                f.write(f'{coref_arg0}{tuples_delimiter}{coref_arg1}{tuples_delimiter}{verb}\n')
 
 print('DONE')
