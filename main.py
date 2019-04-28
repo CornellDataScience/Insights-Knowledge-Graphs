@@ -1,7 +1,10 @@
 import subprocess
+import sys
 from predicate_mapping.generate_ids import create_id_files
 from predicate_mapping.combine_relations import reduce_relations, heat_map
 from predicate_mapping.create_json import to_json
+from relation_extraction.scrape import read_page
+from relation_extraction.tuples_generator import create_tuples
 
 def tuple2json():
     tuplefile = './data/relation_tuples.txt'
@@ -17,4 +20,6 @@ def tuple2json():
     to_json(eidfile, tuplefile, './viz/relations.json')
 
 def main(url):
+    read_page(url)
+    create_tuples()
     tuple2json()

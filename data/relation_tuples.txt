@@ -1,76 +1,27 @@
-"World War II","abbreviated","to WWII or WW2"
-"World War II","known","as the Second World War"
-"World War II ( often abbreviated to WWII or WW2","was","a global war that lasted from 1939 to 1945"
-"a global war","lasted","from 1939"
-"The vast majority of the world's countries ó including all the great powers","formed","two opposing military alliances"
-"two","opposing","military alliances"
-"A state of total war","emerged","more than 100 million people from over 30 countries"
-"A state of total war","involving","more than 100 million people from over 30 countries"
-"The major participants","threw","their entire economic, industrial, and scientific capabilities behind the war effort"
-"The major participants","blurring","the distinction between civilian and military resources"
-"World War II","was","the deadliest conflict in human history"
-"human history","marked","by 50 to 85 million fatalities"
-"most of whom","were","civilians in the Soviet Union and China"
-"It","included","massacres, the genocide of the Holocaust, strategic bombing, premeditated death from starvation and disease, and the only"
-"war.[1","aimed","to dominate Asia and the Pacific"
-"war.[1","dominate","Asia and the Pacific"
-"the only use of nuclear weapons in war.[1","was","at war with China by 1937,[5"
-"though","had","declared"
-"neither side","declared","war on the other"
-"World War II","is","generally"
-"World War II","said","to have begun on 1 September 1939,[6"
-"World War II","have","begun"
-"World War II","begun","on 1 September 1939,[6"
-"Germany","conquered","From late 1939 to early 1941"
-"Germany","controlled","much of continental Europe"
-"Germany","formed","the Axis alliance with Italy and Japan"
-"Germany and the Soviet Union","partitioned","Under the Molotov ñ Ribbentrop Pact of August 1939"
-"the war","continued","between the European Axis powers and the British Empire"
-"the European Axis powers","launched","an invasion of the Soviet Union"
-"the European Axis powers","opening","the largest land theatre of war in history"
-"This Eastern Front","trapped","the Axis"
-"Japan","launched","a surprise attack on the United States as well as European colonies in the Pacific"
-"Japan","supported","by one from Great Britain"
-"the European Axis powers","declared","war"
-"Rapid Japanese conquests over much of the Western Pacific ensued","perceived","by many in Asia"
-"Rapid Japanese conquests over much of the Western Pacific ensued","resulting","in the support of several armies from defeated territories"
-"Rapid Japanese conquests over much of the Western Pacific","defeated","territories"
-"The Axis advance in the Pacific","halted","in 1942"
-"Japan","lost","the critical Battle of Midway"
-"Germany","were","defeated"
-"Germany and Italy","defeated","in North Africa and"
-"1943","included","a series of German defeats on the Eastern Front, the Allied invasions of Sicily and Italy, and Allied victories in the Pacific"
-"Key setbacks in 1943","cost","the Axis its initiative"
-"Key setbacks in","forced","it"
-"the Western Allies","invaded","German - occupied France"
-"German","occupied","France"
-"the Soviet Union","regained","its territorial losses"
-"the Soviet Union","turned","toward Germany and its allies"
-"the Japanese","suffered","major reverses in mainland Asia"
-"the Allies","crippled","the Japanese Navy"
-"the Allies","captured","key Western Pacific islands"
-"The war in Europe","concluded","with an invasion of Germany by the Western Allies and the Soviet Union"
-"The war in Europe","culminating","in the capture of Berlin by Soviet troops"
-"the refusal of Japan","surrender","under its terms"
-"the United States","dropped","atomic bombs"
-"Japan","announced","its intention to surrender on 15 August 1945"
-"Japan","cementing","total victory in Asia for the Allies"
-"Tribunals","were","set"
-"Tribunals","set","by fiat"
-"war crimes trials","conducted","in the wake of the war both against the Germans and the Japanese"
-"World War II","changed","the political alignment and social structure of the globe"
-"The United Nations","was","established"
-"The United Nations","established","to foster international co - operation and prevent future conflicts"
-"The United Nations","foster","international co - operation"
-"The United Nations","prevent","future conflicts"
-"the victorious great powers ó China, France, the Soviet Union, the United Kingdom, and the United States","became","the permanent members of its Security Council.[7"
-"The Soviet Union and United States","emerged","as rival superpowers"
-"the influence of its great powers","waned","In the wake of European devastation"
-"the influence of its great powers","triggering","the decolonisation of Africa and Asia"
-"Most countries","had","towards economic recovery and expansion"
-"Most countries","been","towards economic recovery and expansion"
-"Most countries","damaged","moved"
-"Most countries whose industries had been damaged","moved","towards economic recovery and expansion"
-"Political integration, especially in Europe","emerged","as an effort"
-"an effort","end","pre - war enmities"
-"Political integration","create","a common identity.[8"
+Families_from_China	were	among_those
+those	paid	the_most_in_the_college_admissions_scandal
+One_Chinese_family	paid	$_6.5_million
+,_the_California_-_based_college	has	admitted
+the_California_-_based_college_counselor	admitted	to_masterminding_the_scheme
+the_California_-_based_college_counselor	masterminding	the_scheme
+the_California_-_based_college_counselor	according	to_a_person_familiar_with_the_matter
+Another	was	the_family_of_a_student
+a_student	referred	to_in_court_filings
+Yale_Applicant_1‚Äù‚Äîwho	paid	$_1.2_million
+$_1.2_million	secure	her_admission_to_Yale_University
+Ms._Guo	had	her_eye_on_Columbia_University_or_Oxford_University
+The_student	is	21-year_-_old_Sherry_Guo
+21-year_-_old_Sherry_Guo	moved	to_Southern_California
+21-year_-_old_Sherry_Guo	attend	high_school
+Ms._Guo	learned	English
+English	arriving	in_California
+She	attended	Serra_Catholic_High_School
+south_of_Los_Angeles	starting	high_school
+A	growing	number_of_Chinese_families
+A_growing_number_of_Chinese_families	are	bringing_their_children_to_the_U.S._for_high_school,_or_even_elementary_school
+A_growing_number_of_Chinese_families	bringing	their_children
+Colleges	scrutinize	foreign_agents_who_help_coordinate_applications_from_overseas_students
+foreign_agents	help	coordinate_applications_from_overseas_students
+foreign_agents	coordinate	applications
+the_role_of_U.S.	based	independent_college_counselors
+those	is	domestic

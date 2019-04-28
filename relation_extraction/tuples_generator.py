@@ -134,13 +134,26 @@ for prediction_tuple in predictions:
             coref_arg0 = coref_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
             coref_arg1 = coref_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
 
+            # Kevin hates spaces
+            relations_arg0 = relations_arg0.replace(' ', '_')
+            relations_arg1 = relations_arg1.replace(' ', '_')
+            details_arg0 = details_arg0.replace(' ', '_')
+            details_arg1 = details_arg1.replace(' ', '_')
+            coref_arg0 = coref_arg0.replace(' ', '_')
+            coref_arg1 = coref_arg1.replace(' ', '_')
+
+            # Remove tuples with non-noun entities
+            pos0 = [token[1] for token in nltk.pos_tag(nltk.tokenize.word_tokenize(relations_arg0))]
+            pos1 = [token[1] for token in nltk.pos_tag(nltk.tokenize.word_tokenize(relations_arg1))]
+            #print(pos0, pos1)
+
             # Write tuples to file
-            tuples_delimiter = ','
-            with open(relations_file, mode='a') as f:
-                f.write(f'"{relations_arg0}"{tuples_delimiter}"{verb}"{tuples_delimiter}"{relations_arg1}"\n')
-            with open(details_file, mode='a') as f:
-                f.write(f'"{details_arg0}"{tuples_delimiter}"{verb}"{tuples_delimiter}"{details_arg1}"\n')
-            with open(coref_file, mode='a') as f:
-                f.write(f'"{coref_arg0}"{tuples_delimiter}"{verb}"{tuples_delimiter}"{coref_arg1}"\n')
+            tuples_delimiter = '\t'
+            with open(relations_file, mode='a', encoding='UTF-8') as f:
+                f.write(f'{relations_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{relations_arg1}\n')
+            with open(details_file, mode='a', encoding='UTF-8') as f:
+                f.write(f'{details_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{details_arg1}\n')
+            with open(coref_file, mode='a', encoding='UTF-8') as f:
+                f.write(f'{coref_arg0}{tuples_delimiter}{verb}{tuples_delimiter}{coref_arg1}\n')
 
 print('DONE')
