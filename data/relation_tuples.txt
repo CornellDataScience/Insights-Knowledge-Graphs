@@ -1,64 +1,76 @@
-(Kobe Bean Bryant,born,August 23, 1978)
-(Kobe Bean Bryant,is,an American former professional basketball player)
-(He,played,his entire 20-year career with the Los Angeles Lakers of the National Basketball Association)
-(He,entered,the NBA)
-(He,won,five NBA championships)
-(Bryant,is,an 18-time All - Star, 15-time member of the All - NBA Team, and 12-time member of the All - Defensive team)
-(He,led,the NBA)
-(He,ranks,third on the league 's all - time regular season scoring and fourth on the all - time postseason scoring list)
-(He,is,as one of the greatest basketball players of all time.[3)
-(He,regarded,as one of the greatest basketball players of all time.[3)
-(Bryant,is,the first guard in NBA history)
-(the first guard in NBA history,play,at least 20 seasons)
-(Bryant,is,the son of former NBA player Joe Bryant)
-(He,enjoyed,a successful high school basketball career at Lower Merion High School in Pennsylvania)
-(he,recognized,as the top high school basketball player in the country)
-(he,declared,for the NBA draft)
-(he,was,selected)
-(he,selected,by the Charlotte Hornets)
-(the 13th overall,pick,in the 1996 NBA draft)
-(The Hornets,traded,him)
-(Bryant,earned,himself)
-(Bryant,winning,the 1997 Slam Dunk Contest)
-(he,named,an All - Star)
-(Bryant and Shaquille O'Neal,led,the Lakers)
-(Bryant,was,accused)
-(Bryant,accused,of sexual assault)
-(the charges,were,eventually)
-(the charges,dropped,eventually)
-(a civil suit,was,settled out of court)
-(a civil suit,settled,out of court)
-(the Lakers,lost,the 2004 NBA Finals)
-(O'Neal,was,traded)
-(O'Neal,traded,to the Miami Heat and Bryant)
-(O'Neal,became,the cornerstone of the Lakers)
-(He,led,the NBA)
-(he,scored,a career - high 81 points against the Toronto Raptors)
-(the second most points,scored,in a single game in league history behind Wilt Chamberlain 's 100-point game)
-(Bryant,awarded,the regular season 's Most Valuable Player Award)
-(After,losing,in the 2008 NBA Finals)
-(he,led,the Lakers)
-(he,earning,the Finals MVP Award)
-(He,continued,to be among the top players in the league through 2013)
-(He,be,among the top players in the league)
-(he,suffered,a torn Achilles tendon)
-(a torn Achilles,tendon,at age 34)
-(his play,was,limited the following two years by season - ending injuries to his knee and shoulder)
-(his play,limited,the following two years by season - ending injuries to his knee and shoulder)
-(season,ending,injuries to his knee and shoulder)
-(he,announced,that he would retire after the 2015â€“16 season)
-(he,retire,after the 2015â€“16 season)
-(Bryant,became,the youngest player in league history)
-(the,reach,30,000 career points)
-(He,became,the all - time leading scorer in Lakers franchise history on February 1, 2010)
-(the all - time,leading,scorer)
-(he,surpassed,Jerry West)
-(Bryant,chosen,to start the All - Star Game)
-(Bryant,start,the All - Star Game)
-(he,continue,to)
-(he,selected,to start that game for a record 18 consecutive appearances until his retirement)
-(he,start,that game)
-(His four All - Star MVP Awards,are,tied)
-(His four All - Star MVP Awards,tied,for the most in NBA history)
-(he,won,gold medals)
-(Bryant,won,the Academy Award)
+"World War II","abbreviated","to WWII or WW2"
+"World War II","known","as the Second World War"
+"World War II ( often abbreviated to WWII or WW2","was","a global war that lasted from 1939 to 1945"
+"a global war","lasted","from 1939"
+"The vast majority of the world's countries — including all the great powers","formed","two opposing military alliances"
+"two","opposing","military alliances"
+"A state of total war","emerged","more than 100 million people from over 30 countries"
+"A state of total war","involving","more than 100 million people from over 30 countries"
+"The major participants","threw","their entire economic, industrial, and scientific capabilities behind the war effort"
+"The major participants","blurring","the distinction between civilian and military resources"
+"World War II","was","the deadliest conflict in human history"
+"human history","marked","by 50 to 85 million fatalities"
+"most of whom","were","civilians in the Soviet Union and China"
+"It","included","massacres, the genocide of the Holocaust, strategic bombing, premeditated death from starvation and disease, and the only"
+"war.[1","aimed","to dominate Asia and the Pacific"
+"war.[1","dominate","Asia and the Pacific"
+"the only use of nuclear weapons in war.[1","was","at war with China by 1937,[5"
+"though","had","declared"
+"neither side","declared","war on the other"
+"World War II","is","generally"
+"World War II","said","to have begun on 1 September 1939,[6"
+"World War II","have","begun"
+"World War II","begun","on 1 September 1939,[6"
+"Germany","conquered","From late 1939 to early 1941"
+"Germany","controlled","much of continental Europe"
+"Germany","formed","the Axis alliance with Italy and Japan"
+"Germany and the Soviet Union","partitioned","Under the Molotov – Ribbentrop Pact of August 1939"
+"the war","continued","between the European Axis powers and the British Empire"
+"the European Axis powers","launched","an invasion of the Soviet Union"
+"the European Axis powers","opening","the largest land theatre of war in history"
+"This Eastern Front","trapped","the Axis"
+"Japan","launched","a surprise attack on the United States as well as European colonies in the Pacific"
+"Japan","supported","by one from Great Britain"
+"the European Axis powers","declared","war"
+"Rapid Japanese conquests over much of the Western Pacific ensued","perceived","by many in Asia"
+"Rapid Japanese conquests over much of the Western Pacific ensued","resulting","in the support of several armies from defeated territories"
+"Rapid Japanese conquests over much of the Western Pacific","defeated","territories"
+"The Axis advance in the Pacific","halted","in 1942"
+"Japan","lost","the critical Battle of Midway"
+"Germany","were","defeated"
+"Germany and Italy","defeated","in North Africa and"
+"1943","included","a series of German defeats on the Eastern Front, the Allied invasions of Sicily and Italy, and Allied victories in the Pacific"
+"Key setbacks in 1943","cost","the Axis its initiative"
+"Key setbacks in","forced","it"
+"the Western Allies","invaded","German - occupied France"
+"German","occupied","France"
+"the Soviet Union","regained","its territorial losses"
+"the Soviet Union","turned","toward Germany and its allies"
+"the Japanese","suffered","major reverses in mainland Asia"
+"the Allies","crippled","the Japanese Navy"
+"the Allies","captured","key Western Pacific islands"
+"The war in Europe","concluded","with an invasion of Germany by the Western Allies and the Soviet Union"
+"The war in Europe","culminating","in the capture of Berlin by Soviet troops"
+"the refusal of Japan","surrender","under its terms"
+"the United States","dropped","atomic bombs"
+"Japan","announced","its intention to surrender on 15 August 1945"
+"Japan","cementing","total victory in Asia for the Allies"
+"Tribunals","were","set"
+"Tribunals","set","by fiat"
+"war crimes trials","conducted","in the wake of the war both against the Germans and the Japanese"
+"World War II","changed","the political alignment and social structure of the globe"
+"The United Nations","was","established"
+"The United Nations","established","to foster international co - operation and prevent future conflicts"
+"The United Nations","foster","international co - operation"
+"The United Nations","prevent","future conflicts"
+"the victorious great powers — China, France, the Soviet Union, the United Kingdom, and the United States","became","the permanent members of its Security Council.[7"
+"The Soviet Union and United States","emerged","as rival superpowers"
+"the influence of its great powers","waned","In the wake of European devastation"
+"the influence of its great powers","triggering","the decolonisation of Africa and Asia"
+"Most countries","had","towards economic recovery and expansion"
+"Most countries","been","towards economic recovery and expansion"
+"Most countries","damaged","moved"
+"Most countries whose industries had been damaged","moved","towards economic recovery and expansion"
+"Political integration, especially in Europe","emerged","as an effort"
+"an effort","end","pre - war enmities"
+"Political integration","create","a common identity.[8"
