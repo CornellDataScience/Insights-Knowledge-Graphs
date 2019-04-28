@@ -1,13 +1,13 @@
 import ast, re, nltk, json
 from allennlp.predictors.predictor import Predictor
 
-def create_tuples():
-    # Define file locations
-    raw_data_file = 'data/raw_data.txt'
-    relations_file = 'data/relation_tuples.txt'
-    details_file = 'data/detail_tuples.txt'
-    coref_file = 'data/coref_tuples.txt'
+# Define file locations
+raw_data_file = 'data/raw_data.txt'
+relations_file = 'data/relation_tuples.txt'
+details_file = 'data/detail_tuples.txt'
+coref_file = 'data/coref_tuples.txt'
 
+def create_tuples():
     # Run AllenNLP coreference resolution on raw text
     predictor = Predictor.from_path("https://s3-us-west-2.amazonaws.com/allennlp/models/coref-model-2018.02.05.tar.gz")
     with open(raw_data_file, encoding='UTF-8') as f:
@@ -117,44 +117,44 @@ def create_tuples():
                 coref_arg1_index = index + desc[:desc.find('[ARG1: ')].count(' ') - 2
                 coref_arg1_tokens = desc[desc.find('[ARG1: ') + 7 : desc.find(']', desc.find('[ARG1: '))].count(' ') + 1
 
-            coref_arg0_replacements = set()
-            coref_arg0_replace_freq = 0
-            coref_arg1_replacements = set()
-            coref_arg1_replace_freq = 0
-            for i in range(coref_arg0_tokens):
-                representative = clusters_dictionary.get(equivalence_dictionary.get(indicies_dictionary.get(coref_arg0_index + i)))
-                if representative != None: 
-                    coref_arg0_replace_freq += 1
-                    if representative not in coref_arg0_replacements:
-                        coref_arg0_replacements.add(representative)
-            for i in range(coref_arg1_tokens):
-                representative = clusters_dictionary.get(equivalence_dictionary.get(indicies_dictionary.get(coref_arg1_index + i)))
-                if representative != None: 
-                    coref_arg1_replace_freq += 1
-                    if representative not in coref_arg1_replacements:
-                        coref_arg1_replacements.add(representative)
+                coref_arg0_replacements = set()
+                coref_arg0_replace_freq = 0
+                coref_arg1_replacements = set()
+                coref_arg1_replace_freq = 0
+                for i in range(coref_arg0_tokens):
+                    representative = clusters_dictionary.get(equivalence_dictionary.get(indicies_dictionary.get(coref_arg0_index + i)))
+                    if representative != None: 
+                        coref_arg0_replace_freq += 1
+                        if representative not in coref_arg0_replacements:
+                            coref_arg0_replacements.add(representative)
+                for i in range(coref_arg1_tokens):
+                    representative = clusters_dictionary.get(equivalence_dictionary.get(indicies_dictionary.get(coref_arg1_index + i)))
+                    if representative != None: 
+                        coref_arg1_replace_freq += 1
+                        if representative not in coref_arg1_replacements:
+                            coref_arg1_replacements.add(representative)
 
-            coref_arg0 = relations_arg0
-            coref_arg1 = relations_arg1
+                coref_arg0 = relations_arg0
+                coref_arg1 = relations_arg1
 
-            # Replace string if it contains a single replaceable entity which represents more than half of the tokens in the string
-            if len(coref_arg0_replacements) == 1:
-                if coref_arg0_replace_freq / coref_arg0_tokens >= 0.5:
-                    coref_arg0 = coref_arg0_replacements.pop()
-            if len(coref_arg1_replacements) == 1:
-                if coref_arg1_replace_freq / coref_arg1_tokens >= 0.5:
-                    coref_arg1 = coref_arg1_replacements.pop()
+                # Replace string if it contains a single replaceable entity which represents more than half of the tokens in the string
+                if len(coref_arg0_replacements) == 1:
+                    if coref_arg0_replace_freq / coref_arg0_tokens >= 0.5:
+                        coref_arg0 = coref_arg0_replacements.pop()
+                if len(coref_arg1_replacements) == 1:
+                    if coref_arg1_replace_freq / coref_arg1_tokens >= 0.5:
+                        coref_arg1 = coref_arg1_replacements.pop()
 
-            #print(f'[0] {relations_arg0} >> {coref_arg0}: {coref_arg0_replace_freq / coref_arg0_tokens}')
-            #print(f'[1] {relations_arg1} >> {coref_arg1}: {coref_arg1_replace_freq / coref_arg1_tokens}')
+                #print(f'[0] {relations_arg0} >> {coref_arg0}: {coref_arg0_replace_freq / coref_arg0_tokens}')
+                #print(f'[1] {relations_arg1} >> {coref_arg1}: {coref_arg1_replace_freq / coref_arg1_tokens}')
 
-            # Clean text
-            relations_arg0 = relations_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
-            relations_arg1 = relations_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
-            details_arg0 = details_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
-            details_arg1 = details_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
-            coref_arg0 = coref_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
-            coref_arg1 = coref_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+                # Clean text
+                relations_arg0 = relations_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+                relations_arg1 = relations_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+                details_arg0 = details_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+                details_arg1 = details_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+                coref_arg0 = coref_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
+                coref_arg1 = coref_arg1.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
 
                 # Kevin hates spaces
                 relations_arg0 = relations_arg0.replace(' ', '_')
@@ -174,3 +174,6 @@ def create_tuples():
                     f.write(f'{coref_arg0}{tuples_delimiter}{coref_arg1}{tuples_delimiter}{verb}\n')
 
     print('DONE')
+
+if __name__ == '__main__':
+    create_tuples()
