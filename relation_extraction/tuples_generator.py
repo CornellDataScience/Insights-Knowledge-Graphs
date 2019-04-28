@@ -116,20 +116,36 @@ for prediction_tuple in predictions:
             coref_arg1_index = index + desc[:desc.find('[ARG1: ')].count(' ') - 2
             coref_arg1_tokens = desc[desc.find('[ARG1: ') + 7 : desc.find(']', desc.find('[ARG1: '))].count(' ') + 1
 
-            coref_arg0 = coref_arg1 = None
-            while coref_arg0 == None and coref_arg0_tokens > 0:
-                coref_arg0 = clusters_dictionary.get(equivalence_dictionary.get(indicies_dictionary.get(coref_arg0_index)))
-                coref_arg0_tokens -= 1
-                coref_arg0_index += 1
-            while coref_arg1 == None and coref_arg1_tokens > 0:
-                coref_arg1 = clusters_dictionary.get(equivalence_dictionary.get(indicies_dictionary.get(coref_arg1_index)))
-                coref_arg1_tokens -= 1
-                coref_arg1_index += 1
+            coref_arg0_replacements = set()
+            coref_arg0_replace_freq = 0
+            coref_arg1_replacements = set()
+            coref_arg1_replace_freq = 0
+            for i in range(coref_arg0_tokens):
+                representative = clusters_dictionary.get(equivalence_dictionary.get(indicies_dictionary.get(coref_arg0_index + i)))
+                if representative != None: 
+                    coref_arg0_replace_freq += 1
+                    if representative not in coref_arg0_replacements:
+                        coref_arg0_replacements.add(representative)
+            for i in range(coref_arg1_tokens):
+                representative = clusters_dictionary.get(equivalence_dictionary.get(indicies_dictionary.get(coref_arg1_index + i)))
+                if representative != None: 
+                    coref_arg1_replace_freq += 1
+                    if representative not in coref_arg1_replacements:
+                        coref_arg1_replacements.add(representative)
 
-            if coref_arg0 == None:
-                coref_arg0 = relations_arg0
-            if coref_arg1 == None:
-                coref_arg1 = relations_arg1
+            coref_arg0 = relations_arg0
+            coref_arg1 = relations_arg1
+
+            # Replace string if it contains a single replaceable entity which represents more than half of the tokens in the string
+            if len(coref_arg0_replacements) == 1:
+                if coref_arg0_replace_freq / coref_arg0_tokens >= 0.5:
+                    coref_arg0 = coref_arg0_replacements.pop()
+            if len(coref_arg1_replacements) == 1:
+                if coref_arg1_replace_freq / coref_arg1_tokens >= 0.5:
+                    coref_arg1 = coref_arg1_replacements.pop()
+
+            #print(f'[0] {relations_arg0} >> {coref_arg0}: {coref_arg0_replace_freq / coref_arg0_tokens}')
+            #print(f'[1] {relations_arg1} >> {coref_arg1}: {coref_arg1_replace_freq / coref_arg1_tokens}')
 
             # Clean text
             relations_arg0 = relations_arg0.strip().replace(r' ,', r',').replace(' .', '.').replace(' \'', '\'').replace(' "', '"').replace(' ;', ';')
