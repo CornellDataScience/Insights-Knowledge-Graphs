@@ -26,12 +26,13 @@
     .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/relations.json", function (data) {
+  d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/old_relations.json", function (data) {
 
-     
+  var g = svg.append("g")
+    .attr("class", "everything");
 
         // Initialize the links
-    var link = svg
+    var link = g.append("g")
       .selectAll("line")
       .data(data.links)
       .enter()
@@ -40,7 +41,7 @@
       .attr("id", d=> "link"+d.source+d.target);
 
     // Initialize the nodes
-    var node = svg
+    var node = g.append("g")
       .selectAll("circle")
       .data(data.nodes)
       .enter()
@@ -74,7 +75,7 @@
       .call( d3.drag().on("start",dragstart).on("drag",dragging).on("end",dragend) )
       .attr("id", d => "node"+d.id);
 
-    var entities = svg
+    var entities = g.append("g")
       .selectAll(".entities")
       .data(data.nodes)
       .enter()
@@ -84,7 +85,7 @@
 
 
 
-    var relations = svg
+    var relations = g.append("g")
       .selectAll(".relations")
       .data(data.links)
       .enter()
@@ -92,14 +93,19 @@
       .attr("class", "relations")
       .text(function (d) { return d.name })
 
-    var simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
-      .force("link", d3.forceLink()                               // This force provides links between nodes
+    var simulation = d3.forceSimulation(data.nodes)                 
+      .force("link", d3.forceLink()                               
         .id(function (d) { return d.id; })                     // This provide  the id of a node
         .links(data.links)                                    // and this the list of links
       )
-      .force("charge", d3.forceManyBody().strength(-100))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force("charge", d3.forceManyBody().strength(-1000))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
       .on("tick", ticked);
+
+    var zoom_handler = d3.zoom()
+    .on("zoom", zoom_actions);
+
+    zoom_handler(svg); 
 
     function dragstart(d) {
       if (!d3.event.active) {
@@ -149,6 +155,10 @@
       entities
         .attr("x", function (d) { return d.x + 6; })
         .attr("y", function (d) { return d.y - 6; });
+    }
+
+    function zoom_actions(){
+    g.attr("transform", d3.event.transform)
     }
 
   });
