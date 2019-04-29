@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
-from scrape import read_page
-from tuples_generator import main
+import main
+import subprocess
 
 app = Flask(__name__)
 
@@ -11,12 +11,11 @@ def my_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     text = request.form['text']
-    raw_data = read_page(text)
-    return main(raw_data)
-
-@app.route('/')
-def hello():
-    return 'Hello, World!'
+    main.main(text)
+    subprocess.call("git add -A", shell=True)
+    subprocess.call("git commit -m \"Run from app\"", shell=True)
+    subprocess.call("git push", shell=True)
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
