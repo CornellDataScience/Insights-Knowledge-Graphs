@@ -7,6 +7,7 @@ def read_page(url):
     myFile = open('data/raw_data.txt', 'w', encoding="utf-8")
     print("reading page: " + url_title)
     page = requests.get(url)
+    
     try:
         soup = BeautifulSoup(page.text, "html5lib")
         text = soup.find("div",{"class": "mw-parser-output"})
