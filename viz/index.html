@@ -49,7 +49,7 @@
       .enter()
       .append("circle")
       .attr("r", 10)
-      .style("fill", "#69b3a2")
+      .style("fill", function (d) { return d.color })
       .on("mouseover", function (d) {
         data.links.forEach(function (l, i) {
           if (l.source.id === d.id) {
@@ -63,7 +63,7 @@
         d3.select("#node" + d.id).style("fill", "red");
       })
       .on("mouseout", function (d) {
-        d3.select("#node" + d.id).style("fill", "#69b3a2");
+        d3.select("#node" + d.id).style("fill", function (d) { return d.color });
         data.links.forEach(function (l, i) {
           if (l.source.id === d.id) {
             d3.select("#link" + d.id + l.target.id)
