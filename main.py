@@ -21,9 +21,13 @@ def tuple2json():
 
 def recombine(thresh):
     combined_rels = reduce_relations(ridfile, rvecfile, thresh, './data/combined_relations.txt')
-    to_json(eidfile, ridfile, tuplefile, combined_rels, './viz/relations.json',)
+    to_json(eidfile, ridfile, tuplefile, combined_rels, './templates/relations.json',)
 
 def main(url):
-    read_page(url)
+    #read_page(url)
     create_tuples()
     tuple2json()
+
+
+if __name__ == '__main__':
+    main('https://en.wikipedia.org/wiki/Avengers:_Endgame')
