@@ -14,7 +14,7 @@ def my_form_post():
     main.main(text)
     subprocess.call("git add -A", shell=True)
     subprocess.call("git commit -m \"Run from app\"", shell=True)
-    subprocess.call("git add -A", shell=True)
+    subprocess.call("git push", shell=True)
     return render_template('index.html')
 
 
