@@ -14,13 +14,12 @@ def read_page(url):
         toc = text.find("div", {"class": "toc"})
         for t in toc.previous_siblings:
              if not t.find('img') and (t.name == 'p' or t.name == 'ul'):
-                full_text += str(t.getText().replace('\n', ' '))
+                full_text = str(t.getText().replace('\n', ' ')) + full_text
         myFile.write(full_text + "\n")
     except AttributeError:
         print("invalid page, skipping")
-    return full_text
 
 if __name__ == '__main__':
     page_url = str(sys.argv[1])
-    a = read_page(page_url)
+    read_page(page_url)
     print('Scraping Complete.')
