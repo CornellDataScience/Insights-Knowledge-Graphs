@@ -22,8 +22,8 @@
 
   // set the dimensions and margins of the graph
   var margin = { top: 200, right: 30, bottom: 30, left: 40 },
-    width = 1000 - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom;
+    width = 3000 - margin.left - margin.right,
+    height = 2800 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
   var svg = d3.select("#my_dataviz")
@@ -36,10 +36,11 @@
 
   d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/relations.json", function (data) {
 
-
+    var g = svg.append("g")
+      .attr("class", "everything");
 
     // Initialize the links
-    var link = svg
+    var link = g.append("g")
       .selectAll("line")
       .data(data.links)
       .enter()
@@ -48,13 +49,13 @@
       .attr("id", d => "link" + d.source + d.target);
 
     // Initialize the nodes
-    var node = svg
+    var node = g.append("g")
       .selectAll("circle")
       .data(data.nodes)
       .enter()
       .append("circle")
       .attr("r", 15)
-      .style("fill", "#69b3a2")
+      .style("fill", function (d) { return d.color })
       .on("mouseover", function (d) {
         data.links.forEach(function (l, i) {
           if (l.source.id === d.id) {
@@ -68,7 +69,7 @@
         d3.select("#node" + d.id).style("fill", "red");
       })
       .on("mouseout", function (d) {
-        d3.select("#node" + d.id).style("fill", "#69b3a2");
+        d3.select("#node" + d.id).style("fill", function (d) { return d.color });
         data.links.forEach(function (l, i) {
           if (l.source.id === d.id) {
             d3.select("#link" + d.id + l.target.id)
@@ -82,7 +83,7 @@
       .call(d3.drag().on("start", dragstart).on("drag", dragging).on("end", dragend))
       .attr("id", d => "node" + d.id);
 
-    var entities = svg
+    var entities = g.append("g")
       .selectAll(".entities")
       .data(data.nodes)
       .enter()
@@ -92,7 +93,7 @@
       .text(function (d) { return d.name.length < 15 ? d.name : d.name.substring(0,15) + "..." })
 
 
-    var relations = svg
+    var relations = g.append("g")
       .selectAll(".relations")
       .data(data.links)
       .enter()
@@ -101,15 +102,19 @@
       .attr("text-anchor", "middle")
       .text(function (d) { return d.name })
 
-    // Let's list the force we wanna apply on the network
-    var simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
-      .force("link", d3.forceLink()                               // This force provides links between nodes
+    var simulation = d3.forceSimulation(data.nodes)
+      .force("link", d3.forceLink()
         .id(function (d) { return d.id; })                     // This provide  the id of a node
         .links(data.links)                                    // and this the list of links
       )
       .force("charge", d3.forceManyBody().strength(-1000))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
       .on("tick", ticked);
+
+    var zoom_handler = d3.zoom()
+      .on("zoom", zoom_actions);
+
+    zoom_handler(svg);
 
     function dragstart(d) {
       if (!d3.event.active) {
@@ -131,19 +136,16 @@
     }
     function dragend(d) {
 
-      // End dragging a circle, make sure the simulation has enough alpha left to fix things afterwards
       if (!d3.event.active) {
-        simulation.alphaTarget(0); // Allow the simulation to cool completely again
 
+        simulation.alphaTarget(0); // Allow the simulation to cool completely again
       }
 
-      // Remember to null out your .fx and .fy so that d3 can begin simulating the dragged point once more
       d.fx = null;
       d.fy = null;
 
     }
 
-    // This function is run at each iteration of the force algorithm, updating the nodes position.
     function ticked() {
       link
         .attr("x1", function (d) { return d.source.x; })
@@ -162,6 +164,10 @@
       entities
         .attr("x", function (d) { return d.x + 6; })
         .attr("y", function (d) { return d.y - 6; });
+    }
+
+    function zoom_actions() {
+      g.attr("transform", d3.event.transform)
     }
 
   });

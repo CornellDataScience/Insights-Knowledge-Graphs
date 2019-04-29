@@ -18,9 +18,8 @@ def read_page(url):
         myFile.write(full_text + "\n")
     except AttributeError:
         print("invalid page, skipping")
-    return full_text
 
 if __name__ == '__main__':
     page_url = str(sys.argv[1])
-    a = read_page(page_url)
+    read_page(page_url)
     print('Scraping Complete.')

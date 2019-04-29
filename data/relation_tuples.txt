@@ -4,7 +4,7 @@ Disney	the_film	backed
 It	in_Los_Angeles	premiered
 It	in_the_United_States	was
 It	in_the_United_States	released
-The_film	praise	received
+The_film	highly_positive_reviews	received
 critics	its_culmination_of_the_22-film_story	lauding
 It	numerous_box_office_records	broke
 It	over_$_1.2_billion_worldwide	grossed
