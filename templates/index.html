@@ -7,17 +7,27 @@
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 <style>
-  text {
-    font-family: "Gill Sans"
+  svg text {
+    font-family: "Gill Sans";
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .centered {
+    text-align: center;
   }
 </style>
 
 <script>
 
   // set the dimensions and margins of the graph
-  var margin = { top: 200, right: 30, bottom: 30, left: 40 },
-    width = 3000 - margin.left - margin.right,
-    height = 2800 - margin.top - margin.bottom;
+  var margin = { top: 20, right: 30, bottom: 20, left: 30 },
+    width = 1400 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
   var svg = d3.select("#my_dataviz")
@@ -28,8 +38,19 @@
     .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
 
+  var hovertip = svg.append("text")
+    .attr("x", width - 100)
+    .attr("y", 20)
+    .text("Hover over a node")
 
-  d3.json("relations.json", function (data) {
+  var hoverbox = svg.append("rect")
+    .attr("x", width - 110)
+    .attr("y", 0)
+    .attr("width", 200)
+    .attr("height", 30)
+    .attr("fill", "rgba(255, 158, 44, .3)")
+
+  d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/templates/relations.json", function (data) {
 
     var g = svg.append("g")
       .attr("class", "everything");
@@ -49,7 +70,7 @@
       .data(data.nodes)
       .enter()
       .append("circle")
-      .attr("r", 10)
+      .attr("r", 15)
       .style("fill", function (d) { return d.color })
       .on("mouseover", function (d) {
         data.links.forEach(function (l, i) {
@@ -60,7 +81,11 @@
             d3.select("#link" + l.source.id + d.id)
               .style("stroke", "red");
           }
-        })
+        });
+        hovertip.text(d.name)
+          .attr("x", width - (d.name.length * 6.5));
+        hoverbox.attr("x", width - (d.name.length * 6.5) - 10)
+          .attr("width", d.name.length * 6.5 + 50)
         d3.select("#node" + d.id).style("fill", "red");
       })
       .on("mouseout", function (d) {
@@ -84,8 +109,8 @@
       .enter()
       .append("text")
       .attr("class", "entities")
-      .text(function (d) { return d.name })
-
+      .attr("text-anchor", "middle")
+      .text(function (d) { return d.name.length < 15 ? d.name : d.name.substring(0, 15) + "..." })
 
 
     var relations = g.append("g")
@@ -94,15 +119,21 @@
       .enter()
       .append("text")
       .attr("class", "relations")
+      .attr("text-anchor", "middle")
       .text(function (d) { return d.name })
+
+
 
     var simulation = d3.forceSimulation(data.nodes)
       .force("link", d3.forceLink()
         .id(function (d) { return d.id; })                     // This provide  the id of a node
-        .links(data.links)                                    // and this the list of links
+        .links(data.links)
+        .distance(100)
+        .strength(.5)                                 // and this the list of links
       )
-      .force("charge", d3.forceManyBody().strength(-1000))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force("charge", d3.forceManyBody().strength(-100))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
+      .force("collide", d3.forceCollide(30))
       .on("tick", ticked);
 
     var zoom_handler = d3.zoom()
@@ -148,16 +179,16 @@
         .attr("y2", function (d) { return d.target.y; });
 
       node
-        .attr("cx", function (d) { return d.x + 6; })
-        .attr("cy", function (d) { return d.y - 6; });
+        .attr("cx", function (d) { return d.x = Math.max(15, Math.min(width - 15, d.x)) - 5; })
+        .attr("cy", function (d) { return d.y = Math.max(15, Math.min(height - 15, d.y)) + 5; });
 
       relations
         .attr("x", function (d) { return (d.source.x + d.target.x) / 2.0; })
         .attr("y", function (d) { return (d.source.y + d.target.y) / 2.0; });
 
       entities
-        .attr("x", function (d) { return d.x + 6; })
-        .attr("y", function (d) { return d.y - 6; });
+        .attr("x", function (d) { return d.x; })
+        .attr("y", function (d) { return d.y; });
     }
 
     function zoom_actions() {
