@@ -33,7 +33,7 @@ def to_json(eidfile, ridfile, triplefile, combined_rels, jsonfile):
         outfile.write(json.dumps(jsondict))
 
 def main():
-    to_json('./data/entity2id.txt', './data/relation_tuples.txt', './viz/relations.json')
+    to_json('./data/entity2id.txt', './data/relation_tuples.txt', './templates/relations.json')
 
 if __name__ == '__main__':
     main()

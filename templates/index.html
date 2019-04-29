@@ -29,7 +29,7 @@
       "translate(" + margin.left + "," + margin.top + ")");
 
 
-  d3.json("https://raw.githubusercontent.com/CornellDataScience/Insights-Knowledge-Graphs/master/viz/relations.json", function (data) {
+  d3.json("relations.json", function (data) {
 
     var g = svg.append("g")
       .attr("class", "everything");
