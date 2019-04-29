@@ -7,8 +7,14 @@
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 <style>
-  text {
-    font-family: "Gill Sans"
+  svg text {
+    font-family: "Gill Sans";
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
   }
 </style>
 
@@ -47,7 +53,7 @@
       .data(data.nodes)
       .enter()
       .append("circle")
-      .attr("r", 10)
+      .attr("r", 15)
       .style("fill", "#69b3a2")
       .on("mouseover", function (d) {
         data.links.forEach(function (l, i) {
@@ -82,8 +88,8 @@
       .enter()
       .append("text")
       .attr("class", "entities")
-      .text(function (d) { return d.name })
-
+      .attr("text-anchor", "middle")
+      .text(function (d) { return d.name.length < 15 ? d.name : d.name.substring(0,15) + "..." })
 
 
     var relations = svg
@@ -92,6 +98,7 @@
       .enter()
       .append("text")
       .attr("class", "relations")
+      .attr("text-anchor", "middle")
       .text(function (d) { return d.name })
 
     // Let's list the force we wanna apply on the network
