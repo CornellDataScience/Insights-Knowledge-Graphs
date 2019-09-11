@@ -1,6 +1,6 @@
 # Insights-Knowledge-Graphs
 
-Members: Jenny Chen (Stats 21'), Ziwei Gu (CS/Math '21), Tushar Khan (CS 22'), Kevin Ngo (CS 21')
+Members: Jenny Chen (Stats 21'), Ziwei Gu (CS/Math '21), Tushar Khan (CS 22'), Kevin Ngo (CS 21'), Oscar So (CS 22')
 
 
 ## Introduction
